@@ -398,7 +398,7 @@
 
       <div id="chatContent"></div>
 
-      <div class="footer-bar" id="fullAudioBtn" onclick="playAudio('full_audio.mp3', this, true)">
+      <div class="footer-bar" id="fullAudioBtn" onclick="playAudio('Full_Audio.mp3', this, true)">
         <span id="fullAudioBtnText">تشغيل المحادثة كاملة (الإنجليزية) ▶️</span>
       </div>
     </div>
@@ -474,8 +474,8 @@
         stopPlayback();
       }
 
-      // مسار مباشر وفوري للملف على الاستضافة
-      var audioSrc = "Conversation_" + currentConversation + "/" + fileName;
+      // مسار المجلد الصوتي الصحيح
+      var audioSrc = "conversations/Conversation_" + currentConversation + "/" + fileName;
 
       currentlyPlayingBtn = btnEl;
       if (isFullAudio) {
@@ -511,7 +511,8 @@
       window.scrollTo(0, 0);
 
       try {
-        var response = await fetch("Conversation_" + id + "/data.json");
+        // مسار ملف JSON الصحيح
+        var response = await fetch("conversations/Conversation_" + id + "/data.json");
         if (!response.ok) throw new Error("File not found");
         var data = await response.json();
 
