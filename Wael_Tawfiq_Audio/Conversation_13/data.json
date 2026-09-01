@@ -1,0 +1,30 @@
+{
+  "id": 13,
+  "title": "محادثة 13 - طلب مساعدة",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Can you help me with this exercise?",
+      "ar": "هل يمكنك مساعدتي في هذا التمرين؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Sure, what do you need?",
+      "ar": "بالتأكيد، ماذا تحتاج؟"
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I don't understand this question.",
+      "ar": "لا أفهم هذا السؤال."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Let me explain it.",
+      "ar": "دعني أشرحه لك."
+    }
+  ]
+}

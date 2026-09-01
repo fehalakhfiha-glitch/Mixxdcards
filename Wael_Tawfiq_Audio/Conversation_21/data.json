@@ -1,0 +1,30 @@
+{
+  "id": 21,
+  "title": "ظ ص 0000 أ م ظ",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I want to buy a shirt.",
+      "ar": "أريد شراء قميص."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Do you like this one.",
+      "ar": "هل يعجبك هذا؟"
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Yes, but it's expensive.",
+      "ar": "نعم، لكنه غالي."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "There is a cheaper one here.",
+      "ar": "يوجد هنا واحد أرخص."
+    }
+  ]
+}

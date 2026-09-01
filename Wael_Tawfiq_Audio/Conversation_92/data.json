@@ -1,0 +1,30 @@
+{
+  "id": 92,
+  "title": "محادثة 92 - في الحافلة",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Is this seat free?",
+      "ar": "هل هذا المقعد فارغ؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, it is.",
+      "ar": "نعم، هو فارغ."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Thank you.",
+      "ar": "شكرًا"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "No problem",
+      "ar": "لا مشكلة."
+    }
+  ]
+}

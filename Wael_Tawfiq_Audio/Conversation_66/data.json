@@ -1,0 +1,30 @@
+{
+  "id": 66,
+  "title": "محادثة 66 – مشكلة في الإنترنت",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "The internet is not working.",
+      "ar": "الإنترنت لا يعمل."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Did you check the router?",
+      "ar": "هل فحصت الراوتر؟"
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Yes, but it's still slow.",
+      "ar": "نعم، لكنه ما زال بطيئًا."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Try restarting it.",
+      "ar": "حاول إعادة تشغيله."
+    }
+  ]
+}

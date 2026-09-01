@@ -1,0 +1,30 @@
+{
+  "id": 82,
+  "title": "محادثة 82 – طلب توضيح",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "What do you mean?",
+      "ar": "ماذا تقصد؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I mean it's not easy.",
+      "ar": "أقصد أنه ليس سهلاً."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Oh, I understand now.",
+      "ar": "آه، فهمت الآن."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Good.",
+      "ar": "جيد."
+    }
+  ]
+}

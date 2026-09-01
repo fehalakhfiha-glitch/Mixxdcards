@@ -1,0 +1,30 @@
+{
+  "id": 100,
+  "title": "محادثة 100 – نهاية اللقاء",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "It was nice talking to you today.",
+      "ar": "كان من الجميل التحدث معك اليوم."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I enjoyed our conversation too.",
+      "ar": "استمتعت بحديثنا أيضًا."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "See you next time!",
+      "ar": "أراك في المرة القادمة!"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Take care and goodbye!",
+      "ar": "اعتن بنفسك وإلى اللقاء!"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": 98,
+  "title": "محادثة 98 - طلب المساعدة في العمل",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Can you help me with this report?",
+      "ar": "هل يمكنك مساعدتي في هذا التقرير؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Sure, give me a minute.",
+      "ar": "بالطبع، أعطني دقيقة."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Thank you, I appreciate it.",
+      "ar": "شكرًا، أنا أقدّر ذلك."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "No problem.",
+      "ar": "لا مشكلة."
+    }
+  ]
+}

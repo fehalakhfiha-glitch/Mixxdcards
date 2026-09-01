@@ -1,0 +1,30 @@
+{
+  "id": 26,
+  "title": "محادثة 26- التفضيل",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Do you prefer morning or evening?",
+      "ar": "هل تفضل الصباح أم المساء؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I prefer the morning.",
+      "ar": "أفضل الصباح."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Why?",
+      "ar": "لماذا؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Because I feel more active.",
+      "ar": "لأنني أشعر بمزيد من النشاط."
+    }
+  ]
+}

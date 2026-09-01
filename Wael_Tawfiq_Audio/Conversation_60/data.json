@@ -1,0 +1,30 @@
+{
+  "id": 60,
+  "title": "محادثة 60 – إعطاء نصيحة",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I feel tired.",
+      "ar": "أشعر بالتعب."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "You should sleep early.",
+      "ar": "يجب أن تنام مبكرًا."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "You're right.",
+      "ar": "أنت محق."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Take care.",
+      "ar": "اعتنِ بنفسك."
+    }
+  ]
+}

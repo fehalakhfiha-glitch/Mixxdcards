@@ -1,0 +1,30 @@
+{
+  "id": 48,
+  "title": "محادثة 48- في البقالة",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Do you have milk?",
+      "ar": "هل لديكم حليب؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, it's over there.",
+      "ar": "نعم، إنه هناك."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "How much is it?",
+      "ar": "كم سعره؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "It's 5 dollars.",
+      "ar": "سعره 5 دولارات."
+    }
+  ]
+}

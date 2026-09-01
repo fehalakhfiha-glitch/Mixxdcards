@@ -1,0 +1,30 @@
+{
+  "id": 78,
+  "title": "محادثة 78 - السؤال عن السعر",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "How much is this?",
+      "ar": "بكم هذا؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "It's 25 dollars.",
+      "ar": "25 دولارًا."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "That's too expensive.",
+      "ar": "هذا غالي جدًا."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I can give you a discount.",
+      "ar": "يمكنني أن أعطيك خصمًا."
+    }
+  ]
+}

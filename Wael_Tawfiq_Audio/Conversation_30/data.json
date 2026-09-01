@@ -1,0 +1,30 @@
+{
+  "id": 30,
+  "title": "محادثة 30- اتخاذ قرار",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I'm tired.",
+      "ar": "أنا تعب."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "You should take a break.",
+      "ar": "يجب أن تأخذ استراحة."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Yes, I will rest now.",
+      "ar": "نعم، سأرتاح الآن."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Good idea.",
+      "ar": "فكرة جيدة."
+    }
+  ]
+}

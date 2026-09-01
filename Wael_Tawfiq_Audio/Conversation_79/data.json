@@ -1,0 +1,30 @@
+{
+  "id": 79,
+  "title": "محادثة 79 - في المكتب",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Are you busy now?",
+      "ar": "هل أنت مشغول الآن؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, a little.",
+      "ar": "نعم، قليلًا."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Can we talk later?",
+      "ar": "هل يمكننا التحدث لاحقًا؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Sure.",
+      "ar": "بتأكيد."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": 94,
+  "title": "محادثة 94 - في المطار",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Where can I check in?",
+      "ar": "أين يمكنني تسجيل الدخول؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "At counter number 6.",
+      "ar": "عند كاونتر رقم 6."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Thank you very much.",
+      "ar": "شكراً جزيلاً."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "You're welcome.",
+      "ar": "على الرحب والسعة."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": 32,
+  "title": "محادثة 32- استخدام الواي فاي",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Excuse me, do you have Wi-Fi?",
+      "ar": "عذرًا، هل لديكم واي فاي؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, we do.",
+      "ar": "نعم، لدينا."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "What's the password?",
+      "ar": "ما كلمة المرور؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "It's 12345678.",
+      "ar": "إنها 12345678."
+    }
+  ]
+}

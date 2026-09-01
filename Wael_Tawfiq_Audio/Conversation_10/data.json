@@ -1,0 +1,30 @@
+{
+  "id": 10,
+  "title": "محادثة 10 - التحدث عن التعب",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I'm tired today.",
+      "ar": "أنا متعب اليوم."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Why?",
+      "ar": "لماذا؟"
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Because I didn't sleep well.",
+      "ar": "لأنني لم أنم جيدًا."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "You should rest, so you feel better.",
+      "ar": "يجب أن تستريح لكي تشعر بتحسن."
+    }
+  ]
+}

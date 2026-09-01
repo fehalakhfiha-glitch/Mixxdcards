@@ -1,0 +1,30 @@
+{
+  "id": 27,
+  "title": "محادثة 27- السؤال عن السبب",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Why are you late?",
+      "ar": "لماذا تأخرت؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Because I missed the bus.",
+      "ar": "لأن فاتني الباص."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Oh, I see.",
+      "ar": "أوه، فهمت."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "That's okay.",
+      "ar": "لا بأس."
+    }
+  ]
+}

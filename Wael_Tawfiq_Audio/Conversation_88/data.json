@@ -1,0 +1,30 @@
+{
+  "id": 88,
+  "title": "محادثة 88 - في المكتبة",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I'm looking for an English book.",
+      "ar": "أبحث عن كتاب باللغة الإنجليزية."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "What kind of book do you need?",
+      "ar": "ما نوع الكتاب الذي تحتاجه؟"
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "A beginner book, please.",
+      "ar": "كتاب للمبتدئين، من فضلك."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "You can find it over there.",
+      "ar": "يمكنك العثور عليه هناك."
+    }
+  ]
+}

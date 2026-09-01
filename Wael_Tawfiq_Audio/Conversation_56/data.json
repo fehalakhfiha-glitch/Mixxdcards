@@ -1,0 +1,30 @@
+{
+  "id": 56,
+  "title": "محادثة 56 - في مقابلة عمل",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Tell me about yourself.",
+      "ar": "حدثني عن نفسك."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I'm a student and I like learning new things.",
+      "ar": "أنا طالب وأحب تعلم أشياء جديدة."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Why do you want this job.",
+      "ar": "لماذا تريد هذه الوظيفة؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I want to gain experience.",
+      "ar": "أريد اكتساب خبرة."
+    }
+  ]
+}

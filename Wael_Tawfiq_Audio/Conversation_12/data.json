@@ -1,0 +1,30 @@
+{
+  "id": 12,
+  "title": "ظ يس أ م ظ",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "What's the date today.",
+      "ar": "ما تاريخ اليوم؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "It's May 5th.",
+      "ar": "اليوم 5 مايو."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I have a test tomorrow.",
+      "ar": "لدي اختبار غدًا."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Good luck.",
+      "ar": "بالتوفيق."
+    }
+  ]
+}

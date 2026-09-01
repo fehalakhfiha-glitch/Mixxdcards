@@ -1,0 +1,30 @@
+{
+  "id": 2,
+  "title": "محادثة 2- التحدث عن النفس",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Where do you live?",
+      "ar": "أين تعيش؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I live in Riyadh.",
+      "ar": "أعيش في الرياض."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "What do you do?",
+      "ar": "ماذا تعمل؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I'm a student.",
+      "ar": "أنا طالب."
+    }
+  ]
+}

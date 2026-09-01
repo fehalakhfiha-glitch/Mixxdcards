@@ -1,0 +1,30 @@
+{
+  "id": 1,
+  "title": "محادثة 1- التعارف",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Hi! What's your name?",
+      "ar": "مرحبا! ما اسمك؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "My name is Sara. What's yours ?",
+      "ar": "اسمي سارة، ما اسمك؟"
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I'm Ali. Nice to meet you.",
+      "ar": "أنا علي، سعيد بلقائك"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Nice to meet you too!",
+      "ar": "سعيدة بلقائك أيضًا!"
+    }
+  ]
+}

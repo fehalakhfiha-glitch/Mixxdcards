@@ -1,0 +1,30 @@
+{
+  "id": 62,
+  "title": "محادثة 62 - طلب تكرار الكلام",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Sorry, can you repeat that?",
+      "ar": "عذرًا، هل يمكنك إعادة ذلك؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Sure.",
+      "ar": "بالتأكيد."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I didn't hear you well.",
+      "ar": "لم أسمعك جيدًا."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "No problem.",
+      "ar": "لا مشكلة."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": 97,
+  "title": "محادثة 97 - في الحديقة",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Do you come here every day?",
+      "ar": "هل تأتي إلى هنا كل يوم؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Almost every evening.",
+      "ar": "تقريبًا كل مساء."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "It's very peaceful here.",
+      "ar": "الجو هنا هادئ للغاية."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, that's why I like it.",
+      "ar": "نعم، لهذا السبب أحبه."
+    }
+  ]
+}

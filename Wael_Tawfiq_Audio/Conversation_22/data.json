@@ -1,0 +1,30 @@
+{
+  "id": 22,
+  "title": "محادثة 22- المقارنة",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Which is better, tea or coffee?",
+      "ar": "أيهما أفضل، الشاي أم القهوة؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I think coffee is better.",
+      "ar": "أعتقد أن القهوة أفضل."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Why?",
+      "ar": "لماذا؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Because it gives me energy.",
+      "ar": "لأنها تعطيني طاقة."
+    }
+  ]
+}

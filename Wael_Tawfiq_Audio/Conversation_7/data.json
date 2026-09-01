@@ -1,0 +1,30 @@
+{
+  "id": 7,
+  "title": "محادثة 7- التحدث عن الطقس",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "How is the weather today?",
+      "ar": "كيف الطقس اليوم؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "It's sunny and warm.",
+      "ar": "مشمس ودافئ."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Do you like this weather?",
+      "ar": "هل تحب هذا الطقس؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, it's perfect.",
+      "ar": "نعم، إنه مثالي."
+    }
+  ]
+}

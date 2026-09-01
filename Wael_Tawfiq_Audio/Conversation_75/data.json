@@ -1,0 +1,30 @@
+{
+  "id": 75,
+  "title": "محادثة 75 - السؤال عن الخبرة",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Have you tried this before?",
+      "ar": "هل جربت هذا من قبل؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, I have.",
+      "ar": "نعم، جربته."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Is it easy?",
+      "ar": "هل هو سهل؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, very easy.",
+      "ar": "نعم، سهل جدًّا."
+    }
+  ]
+}

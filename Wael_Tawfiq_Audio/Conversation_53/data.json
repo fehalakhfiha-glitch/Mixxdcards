@@ -1,0 +1,30 @@
+{
+  "id": 53,
+  "title": "محادثة 53- السؤال عن العمل",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Where do you work?",
+      "ar": "أين تعمل؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I work in a company.",
+      "ar": "أعمل في شركة."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Do you like it?",
+      "ar": "هل تحبه؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, I do.",
+      "ar": "نعم."
+    }
+  ]
+}

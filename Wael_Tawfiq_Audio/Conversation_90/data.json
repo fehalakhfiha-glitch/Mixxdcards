@@ -1,0 +1,30 @@
+{
+  "id": 90,
+  "title": "محادثة 90 – في الملابس",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Can I try this jacket on?",
+      "ar": "هل يمكنني قياس هذه السترة؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Of course. The fitting room is there.",
+      "ar": "بالطبع، غرفة القياس هناك."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Thank you.",
+      "ar": "شكَرًا."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "You're welcome.",
+      "ar": "على الرحب والسعة."
+    }
+  ]
+}

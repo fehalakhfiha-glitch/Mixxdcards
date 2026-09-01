@@ -1,0 +1,30 @@
+{
+  "id": 58,
+  "title": "محادثة 58 – التعبير عن الإعجاب",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I like your shirt.",
+      "ar": "أعجبني قميصك."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Thank you!",
+      "ar": "شكرًا!"
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Where did you buy it?",
+      "ar": "من أين اشتريته؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "From that store.",
+      "ar": "من ذلك المتجر."
+    }
+  ]
+}

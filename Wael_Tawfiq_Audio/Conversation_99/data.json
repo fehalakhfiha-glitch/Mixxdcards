@@ -1,0 +1,30 @@
+{
+  "id": 99,
+  "title": "محادثة 99 - التحدث عن المستقبل",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "What do you want to be in the future?",
+      "ar": "ماذا تريد أن تصبح في المستقبل؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I want to be a doctor.",
+      "ar": "أريد أن أصبح طبيبًا."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "That's a great goal.",
+      "ar": "هذا هدف رائع."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Thank you, I will work hard for it.",
+      "ar": "شكرًا لك، سأعمل بجد من أجل ذلك."
+    }
+  ]
+}

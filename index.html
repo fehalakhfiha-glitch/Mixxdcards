@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>المحادثات الإنجليزية</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #FDFBF7;
+      width: 100%;
+      min-height: 100vh;
+      padding-bottom: 30px;
+    }
+
+    /* =====================================================
+       قائمة المحادثات
+       ===================================================== */
+    #conversationList {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 15px;
+    }
+
+    #conversationList h1 {
+      text-align: center;
+      color: #4D120B;
+      font-size: 22px;
+      margin-bottom: 18px;
+    }
+
+    .search-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    #quickJumpInput {
+      flex-grow: 1;
+      min-width: 0;
+      padding: 12px;
+      border: 2px solid #D2C4A7;
+      border-radius: 8px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 15px;
+      text-align: center;
+      outline: none;
+      background-color: #FAF6EE;
+    }
+
+    #quickJumpInput:focus {
+      border-color: #4D120B;
+    }
+
+    #quickJumpBtn {
+      background-color: #4D120B;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0 22px;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    #quickJumpBtn:active {
+      opacity: 0.8;
+    }
+
+    #quickJumpError {
+      display: none;
+      color: #B00020;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .card-btn {
+      background-color: #FAF6EE;
+      border: 2px solid #D2C4A7;
+      border-radius: 10px;
+      padding: 14px 0;
+      text-align: center;
+      font-weight: 800;
+      color: #4D120B;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+    }
+
+    .card-btn:hover {
+      background-color: #4D120B;
+      color: #fff;
+    }
+
+    .card-btn:active {
+      transform: scale(0.96);
+    }
+
+    /* =====================================================
+       قسم عرض المحادثة
+       ===================================================== */
+    #conversationSection {
+      display: none;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 15px;
+    }
+
+    .back-home-btn {
+      background: none;
+      border: none;
+      color: #4D120B;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      margin-bottom: 15px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .card-container {
+      width: 100%;
+      background-color: #FAF6EE;
+      border: 2px solid #D2C4A7;
+      border-radius: 12px;
+      padding: 20px 15px;
+      position: relative;
+    }
+
+    .badge-number {
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 36px;
+      height: 36px;
+      background-color: #4D120B;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      font-weight: bold;
+      border: 2px solid #D2C4A7;
+    }
+
+    .title-box {
+      text-align: center;
+      border: 1.5px solid #D2C4A7;
+      border-radius: 10px;
+      padding: 8px;
+      margin: 10px auto 20px auto;
+      max-width: 85%;
+    }
+
+    .title-box h2 {
+      color: #4D120B;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .chat-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      gap: 8px;
+    }
+
+    .chat-row.speaker-A {
+      flex-direction: row;
+    }
+
+    .chat-row.speaker-B {
+      flex-direction: row-reverse;
+    }
+
+    .avatar-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 18px;
+    }
+
+    .avatar svg {
+      width: 22px;
+      height: 22px;
+      fill: #E4E7EC;
+    }
+
+    .speaker-label {
+      width: 30px;
+      text-align: center;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      border-radius: 4px;
+    }
+
+    .speaker-A .avatar,
+    .speaker-A .speaker-label {
+      background-color: #0E382B;
+    }
+
+    .speaker-B .avatar,
+    .speaker-B .speaker-label {
+      background-color: #4D120B;
+    }
+
+    .bubble {
+      flex-grow: 1;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .text-en {
+      background-color: #C3E0B5;
+      padding: 6px 10px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #000;
+      direction: ltr;
+      text-align: left;
+    }
+
+    .text-ar {
+      background-color: #FFFDF9;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #333;
+      text-align: right;
+    }
+
+    .btn-audio {
+      width: 38px;
+      height: 38px;
+      background-color: #4D120B;
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 16px;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-left: 4px;
+      transition: all 0.15s ease;
+    }
+
+    .footer-bar {
+      margin-top: 15px;
+      background-color: #4D120B;
+      border-radius: 8px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+    }
+
+    .footer-bar span {
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      font-family: 'Cairo';
+    }
+
+    /* =====================================================
+       أزرار التالي / السابق
+       ===================================================== */
+    .navigation-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-top: 25px;
+      direction: rtl;
+    }
+
+    .nav-btn {
+      flex: 1;
+      padding: 10px 16px;
+      min-height: 42px;
+      border: none;
+      border-radius: 8px;
+      background-color: #4D120B;
+      color: #fff;
+      font-family: 'Cairo', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-btn:hover {
+      opacity: 0.9;
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .loading {
+      text-align: center;
+      color: #777;
+      padding: 20px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 380px) {
+      .card-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .nav-btn {
+        font-size: 12px;
+        padding: 8px 4px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =====================================================
+       1. واجهة اختيار المحادثات
+       ===================================================== -->
+  <div id="conversationList">
+    <h1>اختر المحادثة</h1>
+
+    <div class="search-bar">
+      <input id="quickJumpInput" type="number" min="1" max="100" placeholder="اكتب رقم البطاقة (1-100)">
+      <button id="quickJumpBtn" type="button">اذهب</button>
+    </div>
+
+    <div id="quickJumpError"></div>
+    <div class="card-grid" id="cardGrid"></div>
+  </div>
+
+  <!-- =====================================================
+       2. واجهة عرض المحادثة
+       ===================================================== -->
+  <div id="conversationSection">
+
+    <button class="back-home-btn" onclick="showList()">
+      ➡️ العودة لقائمة المحادثات
+    </button>
+
+    <div class="card-container">
+      <div class="badge-number" id="convBadge">1</div>
+
+      <div class="title-box">
+        <h2 id="convTitle">جاري التحميل...</h2>
+      </div>
+
+      <div id="chatContent"></div>
+
+      <div class="footer-bar" id="fullAudioBtn" onclick="playAudio('full_audio.mp3', this, true)">
+        <span id="fullAudioBtnText">تشغيل المحادثة كاملة (الإنجليزية) ▶️</span>
+      </div>
+    </div>
+
+    <div class="navigation-buttons">
+      <button id="prevBtn" class="nav-btn" type="button" onclick="previousConversation()">
+        ➡️ المحادثة السابقة
+      </button>
+
+      <button id="nextBtn" class="nav-btn" type="button" onclick="nextConversation()">
+        المحادثة التالية ⬅️
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    var TOTAL_CONVERSATIONS = 100;
+    var currentConversation = 1;
+    var player = new Audio();
+    var currentlyPlayingBtn = null;
+    var currentlyPlayingLabel = null;
+
+    var PERSON_ICON_SVG =
+      '<svg viewBox="0 0 187 191" xmlns="http://www.w3.org/2000/svg">' +
+      '<g transform="matrix(1,0,0,1,-631.821968,-32.640977)">' +
+      '<g transform="matrix(1.692241,0,0,1.692241,546.720503,-327.306332)">' +
+      '<path fill="#6A84A1" d="M118.549,216.408C121.285,218.089 123.329,219.17 127.163,224.723C131.766,231.388 132.221,241.025 132.291,242.503C132.644,249.978 129.928,271.717 124.838,276.841C124.357,277.325 124.319,277.364 119.398,283.417C118.392,284.654 115.18,287.369 119.453,293.535C124.043,300.157 138.599,300.85 145.577,303.294C150.626,305.062 152.399,305.8 155.191,309.694C155.701,310.407 160.549,320.878 160.506,322.5C160.483,323.352 160.431,323.353 159.831,323.957C159.246,324.547 159.114,324.27 152.498,324.449C147.575,324.582 147.592,324.845 140.503,324.822C134.974,324.804 134.993,325.176 129.481,324.947C127.23,324.853 127.245,325.114 124.496,324.901C123.859,324.851 123.864,324.938 116.511,324.971C113.496,324.984 113.511,325.09 110.487,324.915C109.918,324.882 81.601,324.748 79.504,324.822C74.492,325 74.502,324.839 69.498,325.05C66.009,325.197 66.023,324.86 62.524,324.961C60.749,325.012 51.335,324.157 50.634,323.413C48.896,321.569 53.968,309.424 60.424,305.376C66.191,301.759 69.649,301.926 80.555,298.727C82.362,298.197 84.556,298.046 88.536,295.549C90.609,294.249 92.752,290.839 92.847,289.512C93.16,285.137 86.575,280.044 83.382,273.566C81.125,268.987 80.946,268.753 79.384,264.491C79.288,264.231 79.188,263.956 79.081,263.664C78.998,263.436 77.403,243.002 78.431,236.492C79.707,228.41 85.186,220.776 89.687,217.78C90.667,217.127 95.005,214.24 103.545,212.817C107.08,212.228 113.658,214.032 118.549,216.408Z"/>' +
+      '</g></g></svg>';
+
+    // إنشاء أزرار الشبكة
+    var cardsHTML = "";
+    for (var i = 1; i <= TOTAL_CONVERSATIONS; i++) {
+      cardsHTML += '<button type="button" class="card-btn" onclick="openConversation(' + i + ')">' + i + '</button>';
+    }
+    document.getElementById("cardGrid").innerHTML = cardsHTML;
+
+    // مشغل الصوت
+    player.addEventListener("ended", function() {
+      if (currentlyPlayingBtn) {
+        player.currentTime = 0;
+        player.play();
+      }
+    });
+
+    player.onerror = function() {
+      alert("تعذر تشغيل الملف الصوتي. تأكد من وجود الملف في المسار المحدد.");
+      stopPlayback();
+    };
+
+    function stopPlayback() {
+      player.pause();
+      player.currentTime = 0;
+
+      if (currentlyPlayingBtn) {
+        if (currentlyPlayingBtn.tagName === "BUTTON") {
+          currentlyPlayingBtn.innerHTML = "▶";
+          currentlyPlayingBtn.style.paddingLeft = "4px";
+        } else if (currentlyPlayingLabel) {
+          currentlyPlayingLabel.innerHTML = "تشغيل المحادثة كاملة (الإنجليزية) ▶️";
+        }
+      }
+      currentlyPlayingBtn = null;
+      currentlyPlayingLabel = null;
+    }
+
+    function playAudio(fileName, btnEl, isFullAudio) {
+      if (currentlyPlayingBtn === btnEl) {
+        stopPlayback();
+        return;
+      }
+      if (currentlyPlayingBtn) {
+        stopPlayback();
+      }
+
+      // مسار مباشر وفوري للملف على الاستضافة
+      var audioSrc = "conversations/conversation_" + currentConversation + "/" + fileName;
+
+      currentlyPlayingBtn = btnEl;
+      if (isFullAudio) {
+        currentlyPlayingLabel = document.getElementById("fullAudioBtnText");
+        currentlyPlayingLabel.innerHTML = "⏹️ إيقاف";
+      } else {
+        btnEl.innerHTML = "⏹️";
+        btnEl.style.paddingLeft = "0px";
+      }
+
+      player.src = audioSrc;
+      player.play().catch(function(err) {
+        console.error(err);
+        stopPlayback();
+      });
+    }
+
+    // جلب بيانات المحادثة مباشرة من مجلد المشروع
+    async function openConversation(id) {
+      id = parseInt(id, 10);
+      if (!id || id < 1 || id > TOTAL_CONVERSATIONS) return;
+
+      stopPlayback();
+      currentConversation = id;
+
+      document.getElementById("conversationList").style.display = "none";
+      document.getElementById("conversationSection").style.display = "block";
+      document.getElementById("convBadge").innerText = id;
+      document.getElementById("convTitle").innerText = "جاري التحميل...";
+      document.getElementById("chatContent").innerHTML = '<div class="loading">⏳ جاري جلب المحادثة...</div>';
+
+      updateNavigationButtons();
+      window.scrollTo(0, 0);
+
+      try {
+        var response = await fetch("conversations/conversation_" + id + "/data.json");
+        if (!response.ok) throw new Error("File not found");
+        var data = await response.json();
+
+        document.getElementById("convTitle").innerText = data.title;
+        var container = document.getElementById("chatContent");
+        container.innerHTML = "";
+
+        data.dialogue.forEach(function(line, index) {
+          var row = document.createElement("div");
+          row.className = "chat-row speaker-" + line.speaker;
+          var audioName = "part_" + (index + 1) + ".mp3";
+
+          row.innerHTML = `
+            <div class="avatar-wrap">
+              <div class="avatar">${PERSON_ICON_SVG}</div>
+              <div class="speaker-label">${line.speaker}</div>
+            </div>
+            <div class="bubble">
+              <div class="text-en">${line.en}</div>
+              <div class="text-ar">${line.ar}</div>
+            </div>
+            <button class="btn-audio" onclick="playAudio('${audioName}', this, false)">▶</button>
+          `;
+          container.appendChild(row);
+        });
+
+      } catch (err) {
+        document.getElementById("chatContent").innerHTML =
+          '<div class="loading" style="color:#b00020;">❌ تعذر تحميل ملف data.json لهذه المحادثة.</div>';
+      }
+    }
+
+    function showList() {
+      stopPlayback();
+      document.getElementById("conversationSection").style.display = "none";
+      document.getElementById("conversationList").style.display = "block";
+      window.scrollTo(0, 0);
+    }
+
+    function previousConversation() {
+      if (currentConversation > 1) openConversation(currentConversation - 1);
+    }
+
+    function nextConversation() {
+      if (currentConversation < TOTAL_CONVERSATIONS) openConversation(currentConversation + 1);
+    }
+
+    function updateNavigationButtons() {
+      document.getElementById("prevBtn").disabled = (currentConversation <= 1);
+      document.getElementById("nextBtn").disabled = (currentConversation >= TOTAL_CONVERSATIONS);
+    }
+
+    // البحث السريع
+    function goToCard() {
+      var val = parseInt(document.getElementById("quickJumpInput").value, 10);
+      var errBox = document.getElementById("quickJumpError");
+      if (!val || val < 1 || val > TOTAL_CONVERSATIONS) {
+        errBox.textContent = "من فضلك اكتب رقم صحيح من 1 إلى " + TOTAL_CONVERSATIONS;
+        errBox.style.display = "block";
+        return;
+      }
+      errBox.style.display = "none";
+      openConversation(val);
+    }
+
+    document.getElementById("quickJumpBtn").addEventListener("click", goToCard);
+    document.getElementById("quickJumpInput").addEventListener("keydown", function(e) {
+      if (e.key === "Enter") goToCard();
+    });
+
+    // أسهم الكيبورد
+    document.addEventListener("keydown", function(e) {
+      if (document.activeElement === document.getElementById("quickJumpInput")) return;
+      if (e.key === "ArrowRight") previousConversation();
+      if (e.key === "ArrowLeft") nextConversation();
+    });
+  </script>
+
+</body>
+</html>

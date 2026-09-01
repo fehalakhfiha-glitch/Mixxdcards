@@ -1,0 +1,30 @@
+{
+  "id": 19,
+  "title": "محادثة 19 - اللغة والتواصل",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Do you speak English?",
+      "ar": "هل تتحدث الإنجليزية؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, a little.",
+      "ar": "نعم، قليلًا."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Can you help me?",
+      "ar": "هل يمكنك مساعدتي؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Of course.",
+      "ar": "بالطبع."
+    }
+  ]
+}

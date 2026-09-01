@@ -1,0 +1,30 @@
+{
+  "id": 28,
+  "title": "محادثة 28- في الهاتف",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Hello, can I speak to Ali?",
+      "ar": "مرحبًا، هل يمكنني التحدث إلى علي؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Sorry, he is not here.",
+      "ar": "عذرًا، هو ليس هنا."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Can I call later?",
+      "ar": "هل يمكنني الاتصال لاحقًا؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, of course.",
+      "ar": "نعم، بالطبع."
+    }
+  ]
+}

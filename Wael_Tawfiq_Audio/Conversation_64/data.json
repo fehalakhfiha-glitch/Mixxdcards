@@ -1,0 +1,30 @@
+{
+  "id": 64,
+  "title": "محادثة 64 - السؤال عن المدة",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "How long are you staying here?",
+      "ar": "كم ستبقى هنا؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "For three days.",
+      "ar": "لثلاثة أيام."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "That’s good.",
+      "ar": "هذا جيد."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, I like this place.",
+      "ar": "نعم، أحب هذا المكان."
+    }
+  ]
+}

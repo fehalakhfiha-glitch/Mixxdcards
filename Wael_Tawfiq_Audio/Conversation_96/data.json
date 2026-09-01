@@ -1,0 +1,30 @@
+{
+  "id": 96,
+  "title": "محادثة 96 – في السوبرماركت",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Where can I find milk?",
+      "ar": "أين يمكنني العثور على الحليب؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "It's in aisle 3.",
+      "ar": "إنه في الممر رقم 3."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Thank you for your help.",
+      "ar": "شكرًا لمساعدتك."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "You're welcome.",
+      "ar": "على الرحب والسعة."
+    }
+  ]
+}

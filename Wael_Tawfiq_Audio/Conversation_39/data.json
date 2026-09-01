@@ -1,0 +1,30 @@
+{
+  "id": 39,
+  "title": "محادثة 39- وصف شخص",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "What does he look like?",
+      "ar": "كيف يبدو؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "He is tall and thin.",
+      "ar": "هو طويل ونحيف."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Is he young.",
+      "ar": "هل هو شاب؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, he is.",
+      "ar": "نعم، أنه كذلك."
+    }
+  ]
+}

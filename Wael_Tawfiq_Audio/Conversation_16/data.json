@@ -1,0 +1,30 @@
+{
+  "id": 16,
+  "title": "محادثة 16 - طلب شيء",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Can you bring me some water, please?",
+      "ar": "هل يمكنك إحضار بعض الماء، من فضلك؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Sure, do you want it cold?",
+      "ar": "بالطبع، هل تريده باردًا؟"
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Yes, please.",
+      "ar": "نعم، من فضلك."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Here you go.",
+      "ar": "تفضل."
+    }
+  ]
+}

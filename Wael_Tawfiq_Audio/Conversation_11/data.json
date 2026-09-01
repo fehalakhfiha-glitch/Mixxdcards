@@ -1,0 +1,30 @@
+{
+  "id": 11,
+  "title": "محادثة 11- كم الساعة",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Excuse me, what time is it?",
+      "ar": "عذرًا، كم الساعة؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "It's 4:30",
+      "ar": "الساعة الرابعة والنصف."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Oh, I'm late for my class",
+      "ar": "أوه، أنا متأخر عن حصتي."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "You should hurry.",
+      "ar": "يجب أن تسرع."
+    }
+  ]
+}

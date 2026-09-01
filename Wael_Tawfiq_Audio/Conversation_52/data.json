@@ -1,0 +1,30 @@
+{
+  "id": 52,
+  "title": "محادثة 52- الرفض بلطف",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Do you want some coffee?",
+      "ar": "هل تريد بعض القهوة؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "No, thank you.",
+      "ar": "لا، شكرًا."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Are you sure?",
+      "ar": "هل أنت متأكد؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, I'm sure.",
+      "ar": "نعم، أنا متأكد."
+    }
+  ]
+}

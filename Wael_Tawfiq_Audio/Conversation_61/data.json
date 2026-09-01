@@ -1,0 +1,30 @@
+{
+  "id": 61,
+  "title": "محادثة 61 – التحدث عن وقت الفراغ",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "What do you do in your free time?",
+      "ar": "ماذا تفعل في وقت فراغك؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I watch movies and read books.",
+      "ar": "أشاهد الأفلام وأقرأ الكتب."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "That sounds fun.",
+      "ar": "يبدو ممتعًا."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, I enjoy it.",
+      "ar": "نعم، أستمتع به."
+    }
+  ]
+}
