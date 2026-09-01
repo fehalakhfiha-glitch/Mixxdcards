@@ -475,7 +475,7 @@
       }
 
       // مسار مباشر وفوري للملف على الاستضافة
-      var audioSrc = "conversations/conversation_" + currentConversation + "/" + fileName;
+      var audioSrc = "Conversation_" + currentConversation + "/" + fileName;
 
       currentlyPlayingBtn = btnEl;
       if (isFullAudio) {
@@ -511,7 +511,7 @@
       window.scrollTo(0, 0);
 
       try {
-        var response = await fetch("conversations/conversation_" + id + "/data.json");
+        var response = await fetch("Conversation_" + id + "/data.json");
         if (!response.ok) throw new Error("File not found");
         var data = await response.json();
 
