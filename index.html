@@ -219,7 +219,6 @@
       line-height: 16px;
     }
 
-    /* ألوان الشخصيات الأصلية كما طلبت */
     .speaker-A .avatar,
     .speaker-A .speaker-label {
       background-color: #0E382B;
@@ -307,14 +306,13 @@
       justify-content: center;
       align-items: center;
       gap: 15px;
-      margin-top: 45px; /* التباعد المطلوب عن البطاقة */
+      margin-top: 45px; 
     }
 
     .nav-arrow-btn, .btn-list-home {
-      border: 2px solid #D2C4A7; /* إطار بيج متناسق */
+      border: 2px solid #D2C4A7;
       border-radius: 10px;
-      color: #4D120B; /* لون الأيقونات متناسق مع التطبيق */
-      font-size: 20px; 
+      color: #4D120B; /* هذا اللون سيتم استخدامه في الـ SVG عبر currentColor */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -336,17 +334,16 @@
       transform: scale(0.95);
     }
 
-    /* تدرج هادئ من درجات البيج (Palette واحدة) للأزرار */
     .btn-prev {
-      background-color: #F5EFE6; /* بيج فاتح جداً */
+      background-color: #F5EFE6; 
     }
 
     .btn-list-home {
-      background-color: #EAE0CC; /* بيج متوسط */
+      background-color: #EAE0CC; 
     }
 
     .btn-next {
-      background-color: #DFD3B8; /* بيج أغمق قليلاً (ذهبي مطفي) */
+      background-color: #DFD3B8; 
     }
 
     .nav-arrow-btn:disabled {
@@ -399,18 +396,27 @@
       </div>
     </div>
 
-    <!-- أزرار التنقل السفلية بدرجات البيج المتناسقة -->
+    <!-- أزرار التنقل السفلية بأيقونات SVG بدلاً من الإيموجي -->
     <div class="bottom-nav-bar">
+      <!-- زر المحادثة السابقة (سهم لليمين) -->
       <button id="prevBtn" class="nav-arrow-btn btn-prev" type="button" title="المحادثة السابقة" onclick="previousConversation()">
-        ➡️
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" width="22" height="22">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
       </button>
 
+      <!-- زر الرجوع للقائمة -->
       <button class="btn-list-home" type="button" title="الرجوع للقائمة" onclick="showList()">
-        ☰
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" width="24" height="24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
       </button>
 
+      <!-- زر المحادثة التالية (سهم لليسار) -->
       <button id="nextBtn" class="nav-arrow-btn btn-next" type="button" title="المحادثة التالية" onclick="nextConversation()">
-        ⬅️
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" width="22" height="22">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
       </button>
     </div>
 
