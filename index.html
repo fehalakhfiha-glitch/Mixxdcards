@@ -1,12 +1,17 @@
 <!DOCTYPE html>
+
 <html lang="ar" dir="rtl">
 
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>المحادثات الإنجليزية</title>
 
   <style>
+
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&display=swap');
 
     * {
@@ -26,6 +31,7 @@
     /* =====================================================
        قائمة المحادثات
        ===================================================== */
+
     #conversationList {
       width: 100%;
       max-width: 500px;
@@ -121,6 +127,7 @@
     /* =====================================================
        قسم عرض المحادثة
        ===================================================== */
+
     #conversationSection {
       display: none;
       width: 100%;
@@ -163,7 +170,7 @@
       padding: 8px 14px;
       margin: 6px auto 25px auto;
       max-width: 85%;
-      background-color: #FDF3E6;
+      background-color: #FFFDF9;
     }
 
     .title-box h2 {
@@ -248,7 +255,7 @@
     }
 
     .text-ar {
-      background-color: #FDF3E6;
+      background-color: #FFFDF9;
       padding: 7px 12px;
       font-size: 13px;
       font-weight: 700;
@@ -301,18 +308,19 @@
     /* =====================================================
        شريط التحكم السفلي الموحد (أسهم التنقل والرجوع)
        ===================================================== */
+
     .bottom-nav-bar {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 15px;
-      margin-top: 45px; 
+      margin-top: 45px;
     }
 
     .nav-arrow-btn, .btn-list-home {
       border: 2px solid #D2C4A7;
       border-radius: 10px;
-      color: #4D120B; /* هذا اللون سيتم استخدامه في الـ SVG عبر currentColor */
+      color: #4D120B;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -335,15 +343,15 @@
     }
 
     .btn-prev {
-      background-color: #F5EFE6; 
+      background-color: #F5EFE6;
     }
 
     .btn-list-home {
-      background-color: #EAE0CC; 
+      background-color: #EAE0CC;
     }
 
     .btn-next {
-      background-color: #DFD3B8; 
+      background-color: #DFD3B8;
     }
 
     .nav-arrow-btn:disabled {
@@ -363,233 +371,381 @@
         grid-template-columns: repeat(4, 1fr);
       }
     }
+
   </style>
+
 </head>
 
 <body>
 
   <div id="conversationList">
+
     <h1>اختر المحادثة</h1>
 
     <div class="search-bar">
+
       <input id="quickJumpInput" type="number" min="1" max="100" placeholder="اكتب رقم البطاقة (1-100)">
+
       <button id="quickJumpBtn" type="button">اذهب</button>
+
     </div>
 
     <div id="quickJumpError"></div>
+
     <div class="card-grid" id="cardGrid"></div>
+
   </div>
 
   <div id="conversationSection">
 
     <div class="card-container">
+
       <div class="badge-number" id="convBadge">1</div>
 
       <div class="title-box">
+
         <h2 id="convTitle">جاري التحميل...</h2>
+
       </div>
 
       <div id="chatContent"></div>
 
       <div class="footer-bar" id="fullAudioBtn" onclick="playAudio('Full_Audio.mp3', this, true)">
+
         <span id="fullAudioBtnText">تشغيل المحادثة كاملة (الإنجليزية)</span>
+
       </div>
+
     </div>
 
     <!-- أزرار التنقل السفلية بأيقونات SVG بدلاً من الإيموجي -->
+
     <div class="bottom-nav-bar">
+
       <!-- زر المحادثة السابقة (سهم لليمين) -->
+
       <button id="prevBtn" class="nav-arrow-btn btn-prev" type="button" title="المحادثة السابقة" onclick="previousConversation()">
+
         <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" width="22" height="22">
+
           <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+
         </svg>
+
       </button>
 
       <!-- زر الرجوع للقائمة -->
+
       <button class="btn-list-home" type="button" title="الرجوع للقائمة" onclick="showList()">
+
         <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" width="24" height="24">
+
           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+
         </svg>
+
       </button>
 
       <!-- زر المحادثة التالية (سهم لليسار) -->
+
       <button id="nextBtn" class="nav-arrow-btn btn-next" type="button" title="المحادثة التالية" onclick="nextConversation()">
+
         <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" width="22" height="22">
+
           <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+
         </svg>
+
       </button>
+
     </div>
 
   </div>
 
   <script>
+
     var TOTAL_CONVERSATIONS = 100;
+
     var currentConversation = 1;
+
     var player = new Audio();
+
     var currentlyPlayingBtn = null;
+
     var currentlyPlayingLabel = null;
 
     var PERSON_ICON_SVG =
+
       '<svg viewBox="0 0 187 191" xmlns="http://www.w3.org/2000/svg">' +
+
       '<g transform="matrix(1,0,0,1,-631.821968,-32.640977)">' +
+
       '<g transform="matrix(1.692241,0,0,1.692241,546.720503,-327.306332)">' +
+
       '<path fill="#E4E7EC" d="M118.549,216.408C121.285,218.089 123.329,219.17 127.163,224.723C131.766,231.388 132.221,241.025 132.291,242.503C132.644,249.978 129.928,271.717 124.838,276.841C124.357,277.325 124.319,277.364 119.398,283.417C118.392,284.654 115.18,287.369 119.453,293.535C124.043,300.157 138.599,300.85 145.577,303.294C150.626,305.062 152.399,305.8 155.191,309.694C155.701,310.407 160.549,320.878 160.506,322.5C160.483,323.352 160.431,323.353 159.831,323.957C159.246,324.547 159.114,324.27 152.498,324.449C147.575,324.582 147.592,324.845 140.503,324.822C134.974,324.804 134.993,325.176 129.481,324.947C127.23,324.853 127.245,325.114 124.496,324.901C123.859,324.851 123.864,324.938 116.511,324.971C113.496,324.984 113.511,325.09 110.487,324.915C109.918,324.882 81.601,324.748 79.504,324.822C74.492,325 74.502,324.839 69.498,325.05C66.009,325.197 66.023,324.86 62.524,324.961C60.749,325.012 51.335,324.157 50.634,323.413C48.896,321.569 53.968,309.424 60.424,305.376C66.191,301.759 69.649,301.926 80.555,298.727C82.362,298.197 84.556,298.046 88.536,295.549C90.609,294.249 92.752,290.839 92.847,289.512C93.16,285.137 86.575,280.044 83.382,273.566C81.125,268.987 80.946,268.753 79.384,264.491C79.288,264.231 79.188,263.956 79.081,263.664C78.998,263.436 77.403,243.002 78.431,236.492C79.707,228.41 85.186,220.776 89.687,217.78C90.667,217.127 95.005,214.24 103.545,212.817C107.08,212.228 113.658,214.032 118.549,216.408Z"/>' +
+
       '</g></g></svg>';
 
     var cardsHTML = "";
+
     for (var i = 1; i <= TOTAL_CONVERSATIONS; i++) {
+
       cardsHTML += '<button type="button" class="card-btn" onclick="openConversation(' + i + ')">' + i + '</button>';
+
     }
+
     document.getElementById("cardGrid").innerHTML = cardsHTML;
 
     player.addEventListener("ended", function() {
+
       if (currentlyPlayingBtn) {
+
         player.currentTime = 0;
+
         player.play();
+
       }
+
     });
 
     player.onerror = function() {
+
       alert("تعذر تشغيل الملف الصوتي. تأكد من وجود الملف في المسار المحدد.");
+
       stopPlayback();
+
     };
 
     function stopPlayback() {
+
       player.pause();
+
       player.currentTime = 0;
 
       if (currentlyPlayingBtn) {
+
         if (currentlyPlayingBtn.tagName === "BUTTON") {
+
           currentlyPlayingBtn.innerHTML = "▶";
+
           currentlyPlayingBtn.style.paddingLeft = "3px";
+
         } else if (currentlyPlayingLabel) {
+
           currentlyPlayingLabel.innerHTML = "تشغيل المحادثة كاملة (الإنجليزية)";
+
         }
+
       }
+
       currentlyPlayingBtn = null;
+
       currentlyPlayingLabel = null;
+
     }
 
     function playAudio(fileName, btnEl, isFullAudio) {
+
       if (currentlyPlayingBtn === btnEl) {
+
         stopPlayback();
+
         return;
+
       }
+
       if (currentlyPlayingBtn) {
+
         stopPlayback();
+
       }
 
       var audioSrc = "conversations/Conversation_" + currentConversation + "/" + fileName;
 
       currentlyPlayingBtn = btnEl;
+
       if (isFullAudio) {
+
         currentlyPlayingLabel = document.getElementById("fullAudioBtnText");
+
         currentlyPlayingLabel.innerHTML = "⏹️ إيقاف";
+
       } else {
+
         btnEl.innerHTML = "⏹️";
+
         btnEl.style.paddingLeft = "0px";
+
       }
 
       player.src = audioSrc;
+
       player.play().catch(function(err) {
+
         console.error(err);
+
         stopPlayback();
+
       });
+
     }
 
     async function openConversation(id) {
+
       id = parseInt(id, 10);
+
       if (!id || id < 1 || id > TOTAL_CONVERSATIONS) return;
 
       stopPlayback();
+
       currentConversation = id;
 
       document.getElementById("conversationList").style.display = "none";
+
       document.getElementById("conversationSection").style.display = "block";
+
       document.getElementById("convBadge").innerText = id;
+
       document.getElementById("convTitle").innerText = "جاري التحميل...";
+
       document.getElementById("chatContent").innerHTML = '<div class="loading">⏳ جاري جلب المحادثة...</div>';
 
       updateNavigationButtons();
+
       window.scrollTo(0, 0);
 
       try {
+
         var response = await fetch("conversations/Conversation_" + id + "/data.json");
+
         if (!response.ok) throw new Error("File not found");
+
         var data = await response.json();
 
         document.getElementById("convTitle").innerText = data.title;
+
         var container = document.getElementById("chatContent");
+
         container.innerHTML = "";
 
         data.dialogue.forEach(function(line, index) {
+
           var row = document.createElement("div");
+
           row.className = "chat-row speaker-" + line.speaker;
+
           var audioName = "part_" + (index + 1) + ".mp3";
 
           row.innerHTML = `
+
             <div class="avatar-wrap">
+
               <div class="avatar">${PERSON_ICON_SVG}</div>
+
               <div class="speaker-label">${line.speaker}</div>
+
             </div>
+
             <div class="bubble">
+
               <div class="text-en">${line.en}</div>
+
               <div class="text-ar">${line.ar}</div>
+
             </div>
+
             <button class="btn-audio" onclick="playAudio('${audioName}', this, false)">▶</button>
+
           `;
+
           container.appendChild(row);
+
         });
 
       } catch (err) {
+
         document.getElementById("chatContent").innerHTML =
+
           '<div class="loading" style="color:#b00020;">❌ تعذر تحميل ملف data.json لهذه المحادثة.</div>';
+
       }
+
     }
 
     function showList() {
+
       stopPlayback();
+
       document.getElementById("conversationSection").style.display = "none";
+
       document.getElementById("conversationList").style.display = "block";
+
       window.scrollTo(0, 0);
+
     }
 
     function previousConversation() {
+
       if (currentConversation > 1) openConversation(currentConversation - 1);
+
     }
 
     function nextConversation() {
+
       if (currentConversation < TOTAL_CONVERSATIONS) openConversation(currentConversation + 1);
+
     }
 
     function updateNavigationButtons() {
+
       document.getElementById("prevBtn").disabled = (currentConversation <= 1);
+
       document.getElementById("nextBtn").disabled = (currentConversation >= TOTAL_CONVERSATIONS);
+
     }
 
     function goToCard() {
+
       var val = parseInt(document.getElementById("quickJumpInput").value, 10);
+
       var errBox = document.getElementById("quickJumpError");
+
       if (!val || val < 1 || val > TOTAL_CONVERSATIONS) {
+
         errBox.textContent = "من فضلك اكتب رقم صحيح من 1 إلى " + TOTAL_CONVERSATIONS;
+
         errBox.style.display = "block";
+
         return;
+
       }
+
       errBox.style.display = "none";
+
       openConversation(val);
+
     }
 
     document.getElementById("quickJumpBtn").addEventListener("click", goToCard);
+
     document.getElementById("quickJumpInput").addEventListener("keydown", function(e) {
+
       if (e.key === "Enter") goToCard();
+
     });
 
     document.addEventListener("keydown", function(e) {
+
       if (document.activeElement === document.getElementById("quickJumpInput")) return;
+
       if (e.key === "ArrowRight") previousConversation();
+
       if (e.key === "ArrowLeft") nextConversation();
+
     });
+
   </script>
 
 </body>
+
 </html>
