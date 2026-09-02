@@ -219,6 +219,7 @@
       line-height: 16px;
     }
 
+    /* ألوان الشخصيات الأصلية كما طلبت */
     .speaker-A .avatar,
     .speaker-A .speaker-label {
       background-color: #0E382B;
@@ -306,54 +307,46 @@
       justify-content: center;
       align-items: center;
       gap: 15px;
-      /* هذا هو التباعد الذي تم زيادته لدفع الأزرار للأسفل بعيداً عن البطاقة */
-      margin-top: 45px; 
+      margin-top: 45px; /* التباعد المطلوب عن البطاقة */
+    }
+
+    .nav-arrow-btn, .btn-list-home {
+      border: 2px solid #D2C4A7; /* إطار بيج متناسق */
+      border-radius: 10px;
+      color: #4D120B; /* لون الأيقونات متناسق مع التطبيق */
+      font-size: 20px; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.1s ease, background-color 0.2s ease;
     }
 
     .nav-arrow-btn {
       flex: 1;
       height: 46px;
-      border: none;
-      border-radius: 10px;
-      color: #fff;
-      font-size: 22px; 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      transition: opacity 0.2s ease, transform 0.1s ease;
-    }
-
-    .nav-arrow-btn:active:not(:disabled) {
-      transform: scale(0.95);
-    }
-
-    .btn-prev {
-      background-color: #4A90E2; 
-    }
-
-    .btn-next {
-      background-color: #4CAF50; 
     }
 
     .btn-list-home {
       width: 60px;
       height: 46px;
-      background-color: #F3E5AB; 
-      border: 2px solid #D4AF37; 
-      border-radius: 10px;
-      color: #4D120B;
-      font-size: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      transition: all 0.15s ease;
     }
 
-    .btn-list-home:active {
+    .nav-arrow-btn:active:not(:disabled), .btn-list-home:active {
       transform: scale(0.95);
-      background-color: #E6D59A;
+    }
+
+    /* تدرج هادئ من درجات البيج (Palette واحدة) للأزرار */
+    .btn-prev {
+      background-color: #F5EFE6; /* بيج فاتح جداً */
+    }
+
+    .btn-list-home {
+      background-color: #EAE0CC; /* بيج متوسط */
+    }
+
+    .btn-next {
+      background-color: #DFD3B8; /* بيج أغمق قليلاً (ذهبي مطفي) */
     }
 
     .nav-arrow-btn:disabled {
@@ -378,9 +371,6 @@
 
 <body>
 
-  <!-- =====================================================
-       1. واجهة اختيار المحادثات
-       ===================================================== -->
   <div id="conversationList">
     <h1>اختر المحادثة</h1>
 
@@ -393,9 +383,6 @@
     <div class="card-grid" id="cardGrid"></div>
   </div>
 
-  <!-- =====================================================
-       2. واجهة عرض المحادثة
-       ===================================================== -->
   <div id="conversationSection">
 
     <div class="card-container">
@@ -412,7 +399,7 @@
       </div>
     </div>
 
-    <!-- أزرار التنقل السفلية: سهم السابق | زر القائمة | سهم التالي -->
+    <!-- أزرار التنقل السفلية بدرجات البيج المتناسقة -->
     <div class="bottom-nav-bar">
       <button id="prevBtn" class="nav-arrow-btn btn-prev" type="button" title="المحادثة السابقة" onclick="previousConversation()">
         ➡️
