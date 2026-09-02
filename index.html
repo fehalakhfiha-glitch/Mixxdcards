@@ -17,10 +17,10 @@
 
     body {
       font-family: 'Cairo', sans-serif;
-      background-color: #FDFBF7;
+      background-color: #F7F4EC;
       width: 100%;
       min-height: 100vh;
-      padding-bottom: 30px;
+      padding-bottom: 40px;
     }
 
     /* =====================================================
@@ -30,12 +30,12 @@
       width: 100%;
       max-width: 500px;
       margin: 0 auto;
-      padding: 15px;
+      padding: 20px 15px;
     }
 
     #conversationList h1 {
       text-align: center;
-      color: #4D120B;
+      color: #3D2B1F;
       font-size: 22px;
       margin-bottom: 18px;
     }
@@ -50,24 +50,24 @@
       flex-grow: 1;
       min-width: 0;
       padding: 12px;
-      border: 2px solid #D2C4A7;
-      border-radius: 8px;
+      border: 2px solid #D8CEBA;
+      border-radius: 10px;
       font-family: 'Cairo', sans-serif;
       font-size: 15px;
       text-align: center;
       outline: none;
-      background-color: #FAF6EE;
+      background-color: #FAF8F3;
     }
 
     #quickJumpInput:focus {
-      border-color: #4D120B;
+      border-color: #5C4333;
     }
 
     #quickJumpBtn {
-      background-color: #4D120B;
+      background-color: #5C4333;
       color: #fff;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       padding: 0 22px;
       font-family: 'Cairo', sans-serif;
       font-weight: 800;
@@ -76,14 +76,14 @@
     }
 
     #quickJumpBtn:active {
-      opacity: 0.8;
+      transform: scale(0.97);
     }
 
     #quickJumpError {
       display: none;
       color: #B00020;
       text-align: center;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 700;
       margin-bottom: 14px;
     }
@@ -96,25 +96,26 @@
     }
 
     .card-btn {
-      background-color: #FAF6EE;
-      border: 2px solid #D2C4A7;
+      background-color: #FAF8F3;
+      border: 2px solid #D8CEBA;
       border-radius: 10px;
       padding: 14px 0;
       text-align: center;
       font-weight: 800;
-      color: #4D120B;
+      color: #3D2B1F;
       font-size: 16px;
       cursor: pointer;
-      transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+      transition: all 0.15s ease;
     }
 
     .card-btn:hover {
-      background-color: #4D120B;
+      background-color: #5C4333;
       color: #fff;
+      border-color: #5C4333;
     }
 
     .card-btn:active {
-      transform: scale(0.96);
+      transform: scale(0.95);
     }
 
     /* =====================================================
@@ -125,30 +126,17 @@
       width: 100%;
       max-width: 480px;
       margin: 0 auto;
-      padding: 15px;
-    }
-
-    .back-home-btn {
-      background: none;
-      border: none;
-      color: #4D120B;
-      font-family: 'Cairo', sans-serif;
-      font-weight: 800;
-      font-size: 14px;
-      cursor: pointer;
-      margin-bottom: 15px;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
+      padding: 25px 15px 15px 15px;
     }
 
     .card-container {
       width: 100%;
-      background-color: #FAF6EE;
-      border: 2px solid #D2C4A7;
-      border-radius: 12px;
-      padding: 20px 15px;
+      background-color: #FAF8F3;
+      border: 2px solid #D8CEBA;
+      border-radius: 16px;
+      padding: 26px 16px 20px 16px;
       position: relative;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
     }
 
     .badge-number {
@@ -156,39 +144,41 @@
       top: -18px;
       left: 50%;
       transform: translateX(-50%);
-      width: 36px;
-      height: 36px;
-      background-color: #4D120B;
-      color: #fff;
+      width: 38px;
+      height: 38px;
+      background-color: #5C4333;
+      color: #FFF;
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: bold;
-      border: 2px solid #D2C4A7;
+      border: 2px solid #D8CEBA;
     }
 
     .title-box {
       text-align: center;
-      border: 1.5px solid #D2C4A7;
+      border: 1.5px solid #D8CEBA;
       border-radius: 10px;
-      padding: 8px;
-      margin: 10px auto 20px auto;
+      padding: 8px 14px;
+      margin: 6px auto 22px auto;
       max-width: 85%;
+      background-color: #F3EFE6;
     }
 
     .title-box h2 {
-      color: #4D120B;
-      font-size: 18px;
+      color: #3D2B1F;
+      font-size: 17px;
       font-weight: 800;
     }
 
+    /* التباعد المريح لأسطر الحوار */
     .chat-row {
       display: flex;
       align-items: center;
-      margin-bottom: 15px;
-      gap: 8px;
+      margin-bottom: 18px;
+      gap: 10px;
     }
 
     .chat-row.speaker-A {
@@ -203,92 +193,96 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2px;
+      gap: 3px;
     }
 
     .avatar {
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
       color: white;
-      font-size: 18px;
     }
 
     .avatar svg {
       width: 22px;
       height: 22px;
-      fill: #E4E7EC;
     }
 
     .speaker-label {
-      width: 30px;
+      width: 28px;
       text-align: center;
       color: #fff;
-      font-size: 12px;
-      font-weight: bold;
+      font-size: 11px;
+      font-weight: 800;
       border-radius: 4px;
+      line-height: 16px;
     }
 
     .speaker-A .avatar,
     .speaker-A .speaker-label {
-      background-color: #0E382B;
+      background-color: #2F5D62;
     }
 
     .speaker-B .avatar,
     .speaker-B .speaker-label {
-      background-color: #4D120B;
+      background-color: #6E4A35;
     }
 
     .bubble {
       flex-grow: 1;
-      border-radius: 8px;
+      border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      border: 1px solid #E5DDCB;
     }
 
     .text-en {
-      background-color: #C3E0B5;
-      padding: 6px 10px;
+      background-color: #E2ECE9;
+      padding: 8px 12px;
       font-size: 14px;
       font-weight: 700;
-      color: #000;
+      color: #1A3038;
       direction: ltr;
       text-align: left;
     }
 
     .text-ar {
-      background-color: #FFFDF9;
-      padding: 5px 10px;
-      font-size: 12px;
+      background-color: #FFFFFF;
+      padding: 7px 12px;
+      font-size: 13px;
       font-weight: 700;
-      color: #333;
+      color: #383838;
       text-align: right;
     }
 
     .btn-audio {
       width: 38px;
       height: 38px;
-      background-color: #4D120B;
+      background-color: #5C4333;
       border: none;
       border-radius: 10px;
       color: #fff;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 15px;
       flex-shrink: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding-left: 4px;
+      padding-left: 3px;
       transition: all 0.15s ease;
     }
 
+    .btn-audio:active {
+      transform: scale(0.92);
+    }
+
     .footer-bar {
-      margin-top: 15px;
-      background-color: #4D120B;
-      border-radius: 8px;
+      margin-top: 22px;
+      background-color: #5C4333;
+      border-radius: 10px;
       padding: 12px;
       display: flex;
       align-items: center;
@@ -302,62 +296,83 @@
 
     .footer-bar span {
       color: #fff;
-      font-size: 16px;
-      font-weight: bold;
-      font-family: 'Cairo';
+      font-size: 15px;
+      font-weight: 800;
     }
 
     /* =====================================================
-       أزرار التالي / السابق
+       شريط التحكم السفلي الموحد (أسهم التنقل والرجوع)
        ===================================================== */
-    .navigation-buttons {
+    .bottom-nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .nav-arrow-btn {
+      flex: 1;
+      height: 44px;
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 20px;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 12px;
-      margin-top: 25px;
-      direction: rtl;
-    }
-
-    .nav-btn {
-      flex: 1;
-      padding: 10px 16px;
-      min-height: 42px;
-      border: none;
-      border-radius: 8px;
-      background-color: #4D120B;
-      color: #fff;
-      font-family: 'Cairo', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
       cursor: pointer;
-      transition: all 0.2s ease;
-      white-space: nowrap;
+      transition: opacity 0.2s ease, transform 0.1s ease;
     }
 
-    .nav-btn:hover {
-      opacity: 0.9;
+    .nav-arrow-btn:active:not(:disabled) {
+      transform: scale(0.95);
     }
 
-    .nav-btn:disabled {
-      opacity: 0.35;
+    /* ألوان هادئة ومميزة للأزرار */
+    .btn-prev {
+      background-color: #245C66; /* بترولي ناعم ومريح */
+    }
+
+    .btn-next {
+      background-color: #2C5E3B; /* زيتي هادئ وراقي */
+    }
+
+    .btn-list-home {
+      width: 50px;
+      height: 44px;
+      background-color: #E7DECD;
+      border: 1.5px solid #D0C2A8;
+      border-radius: 10px;
+      color: #4A3B32;
+      font-size: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-list-home:active {
+      transform: scale(0.95);
+      background-color: #DCCFBA;
+    }
+
+    .nav-arrow-btn:disabled {
+      opacity: 0.25;
       cursor: not-allowed;
     }
 
     .loading {
       text-align: center;
       color: #777;
-      padding: 20px;
+      padding: 25px;
       font-weight: bold;
     }
 
     @media (max-width: 380px) {
       .card-grid {
         grid-template-columns: repeat(4, 1fr);
-      }
-      .nav-btn {
-        font-size: 12px;
-        padding: 8px 4px;
       }
     }
   </style>
@@ -385,10 +400,6 @@
        ===================================================== -->
   <div id="conversationSection">
 
-    <button class="back-home-btn" onclick="showList()">
-      ➡️ العودة لقائمة المحادثات
-    </button>
-
     <div class="card-container">
       <div class="badge-number" id="convBadge">1</div>
 
@@ -403,13 +414,18 @@
       </div>
     </div>
 
-    <div class="navigation-buttons">
-      <button id="prevBtn" class="nav-btn" type="button" onclick="previousConversation()">
-        ➡️ المحادثة السابقة
+    <!-- أزرار التنقل السفلية: سهم السابق | زر القائمة | سهم التالي -->
+    <div class="bottom-nav-bar">
+      <button id="prevBtn" class="nav-arrow-btn btn-prev" type="button" title="المحادثة السابقة" onclick="previousConversation()">
+        ➡️
       </button>
 
-      <button id="nextBtn" class="nav-btn" type="button" onclick="nextConversation()">
-        المحادثة التالية ⬅️
+      <button class="btn-list-home" type="button" title="الرجوع للقائمة" onclick="showList()">
+        ☰
+      </button>
+
+      <button id="nextBtn" class="nav-arrow-btn btn-next" type="button" title="المحادثة التالية" onclick="nextConversation()">
+        ⬅️
       </button>
     </div>
 
@@ -426,7 +442,7 @@
       '<svg viewBox="0 0 187 191" xmlns="http://www.w3.org/2000/svg">' +
       '<g transform="matrix(1,0,0,1,-631.821968,-32.640977)">' +
       '<g transform="matrix(1.692241,0,0,1.692241,546.720503,-327.306332)">' +
-      '<path fill="#6A84A1" d="M118.549,216.408C121.285,218.089 123.329,219.17 127.163,224.723C131.766,231.388 132.221,241.025 132.291,242.503C132.644,249.978 129.928,271.717 124.838,276.841C124.357,277.325 124.319,277.364 119.398,283.417C118.392,284.654 115.18,287.369 119.453,293.535C124.043,300.157 138.599,300.85 145.577,303.294C150.626,305.062 152.399,305.8 155.191,309.694C155.701,310.407 160.549,320.878 160.506,322.5C160.483,323.352 160.431,323.353 159.831,323.957C159.246,324.547 159.114,324.27 152.498,324.449C147.575,324.582 147.592,324.845 140.503,324.822C134.974,324.804 134.993,325.176 129.481,324.947C127.23,324.853 127.245,325.114 124.496,324.901C123.859,324.851 123.864,324.938 116.511,324.971C113.496,324.984 113.511,325.09 110.487,324.915C109.918,324.882 81.601,324.748 79.504,324.822C74.492,325 74.502,324.839 69.498,325.05C66.009,325.197 66.023,324.86 62.524,324.961C60.749,325.012 51.335,324.157 50.634,323.413C48.896,321.569 53.968,309.424 60.424,305.376C66.191,301.759 69.649,301.926 80.555,298.727C82.362,298.197 84.556,298.046 88.536,295.549C90.609,294.249 92.752,290.839 92.847,289.512C93.16,285.137 86.575,280.044 83.382,273.566C81.125,268.987 80.946,268.753 79.384,264.491C79.288,264.231 79.188,263.956 79.081,263.664C78.998,263.436 77.403,243.002 78.431,236.492C79.707,228.41 85.186,220.776 89.687,217.78C90.667,217.127 95.005,214.24 103.545,212.817C107.08,212.228 113.658,214.032 118.549,216.408Z"/>' +
+      '<path fill="#E4E7EC" d="M118.549,216.408C121.285,218.089 123.329,219.17 127.163,224.723C131.766,231.388 132.221,241.025 132.291,242.503C132.644,249.978 129.928,271.717 124.838,276.841C124.357,277.325 124.319,277.364 119.398,283.417C118.392,284.654 115.18,287.369 119.453,293.535C124.043,300.157 138.599,300.85 145.577,303.294C150.626,305.062 152.399,305.8 155.191,309.694C155.701,310.407 160.549,320.878 160.506,322.5C160.483,323.352 160.431,323.353 159.831,323.957C159.246,324.547 159.114,324.27 152.498,324.449C147.575,324.582 147.592,324.845 140.503,324.822C134.974,324.804 134.993,325.176 129.481,324.947C127.23,324.853 127.245,325.114 124.496,324.901C123.859,324.851 123.864,324.938 116.511,324.971C113.496,324.984 113.511,325.09 110.487,324.915C109.918,324.882 81.601,324.748 79.504,324.822C74.492,325 74.502,324.839 69.498,325.05C66.009,325.197 66.023,324.86 62.524,324.961C60.749,325.012 51.335,324.157 50.634,323.413C48.896,321.569 53.968,309.424 60.424,305.376C66.191,301.759 69.649,301.926 80.555,298.727C82.362,298.197 84.556,298.046 88.536,295.549C90.609,294.249 92.752,290.839 92.847,289.512C93.16,285.137 86.575,280.044 83.382,273.566C81.125,268.987 80.946,268.753 79.384,264.491C79.288,264.231 79.188,263.956 79.081,263.664C78.998,263.436 77.403,243.002 78.431,236.492C79.707,228.41 85.186,220.776 89.687,217.78C90.667,217.127 95.005,214.24 103.545,212.817C107.08,212.228 113.658,214.032 118.549,216.408Z"/>' +
       '</g></g></svg>';
 
     // إنشاء أزرار الشبكة
@@ -456,7 +472,7 @@
       if (currentlyPlayingBtn) {
         if (currentlyPlayingBtn.tagName === "BUTTON") {
           currentlyPlayingBtn.innerHTML = "▶";
-          currentlyPlayingBtn.style.paddingLeft = "4px";
+          currentlyPlayingBtn.style.paddingLeft = "3px";
         } else if (currentlyPlayingLabel) {
           currentlyPlayingLabel.innerHTML = "تشغيل المحادثة كاملة (الإنجليزية)";
         }
@@ -474,7 +490,6 @@
         stopPlayback();
       }
 
-      // مسار المجلد الصوتي الصحيح
       var audioSrc = "conversations/Conversation_" + currentConversation + "/" + fileName;
 
       currentlyPlayingBtn = btnEl;
@@ -493,7 +508,6 @@
       });
     }
 
-    // جلب بيانات المحادثة مباشرة من مجلد المشروع
     async function openConversation(id) {
       id = parseInt(id, 10);
       if (!id || id < 1 || id > TOTAL_CONVERSATIONS) return;
@@ -511,7 +525,6 @@
       window.scrollTo(0, 0);
 
       try {
-        // مسار ملف JSON الصحيح
         var response = await fetch("conversations/Conversation_" + id + "/data.json");
         if (!response.ok) throw new Error("File not found");
         var data = await response.json();
@@ -565,7 +578,6 @@
       document.getElementById("nextBtn").disabled = (currentConversation >= TOTAL_CONVERSATIONS);
     }
 
-    // البحث السريع
     function goToCard() {
       var val = parseInt(document.getElementById("quickJumpInput").value, 10);
       var errBox = document.getElementById("quickJumpError");
@@ -583,7 +595,6 @@
       if (e.key === "Enter") goToCard();
     });
 
-    // أسهم الكيبورد
     document.addEventListener("keydown", function(e) {
       if (document.activeElement === document.getElementById("quickJumpInput")) return;
       if (e.key === "ArrowRight") previousConversation();
