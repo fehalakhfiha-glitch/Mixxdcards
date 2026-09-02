@@ -1,17 +1,17 @@
 {
   "id": 12,
-  "title": "ظ يس أ م ظ",
+  "title": "محادثة 12- كم تاريخ اليوم",
   "dialogue": [
     {
       "speaker": "A",
       "gender": "male",
-      "en": "What's the date today.",
+      "en": "What’s the date today.",
       "ar": "ما تاريخ اليوم؟"
     },
     {
       "speaker": "B",
       "gender": "female",
-      "en": "It's May 5th.",
+      "en": "It’s May 5th.",
       "ar": "اليوم 5 مايو."
     },
     {

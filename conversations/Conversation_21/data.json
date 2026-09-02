@@ -1,6 +1,6 @@
 {
   "id": 21,
-  "title": "ظ ص 0000 أ م ظ",
+  "title": "محادثة 21 - الشراء والاختيار",
   "dialogue": [
     {
       "speaker": "A",
@@ -17,7 +17,7 @@
     {
       "speaker": "A",
       "gender": "male",
-      "en": "Yes, but it's expensive.",
+      "en": "Yes, but it’s expensive.",
       "ar": "نعم، لكنه غالي."
     },
     {

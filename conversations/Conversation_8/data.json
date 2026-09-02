@@ -6,13 +6,13 @@
       "speaker": "A",
       "gender": "male",
       "en": "Can I have a sandwich, please?",
-      "ar": "هل يمكنني الحصول على شطيرة؟"
+      "ar": "هل يمكنني الحصول على شطيرة، من فضلك؟"
     },
     {
       "speaker": "B",
       "gender": "female",
       "en": "Sure! Chicken or beef?",
-      "ar": "بالطبع! دجاج أم لحم؟"
+      "ar": "بالطبع! دجاج أم لحم بقري؟"
     },
     {
       "speaker": "A",
