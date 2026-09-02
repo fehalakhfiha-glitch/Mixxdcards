@@ -17,10 +17,10 @@
 
     body {
       font-family: 'Cairo', sans-serif;
-      background-color: #F7F4EC;
+      background-color: #FDFBF7;
       width: 100%;
       min-height: 100vh;
-      padding-bottom: 40px;
+      padding-bottom: 60px;
     }
 
     /* =====================================================
@@ -35,7 +35,7 @@
 
     #conversationList h1 {
       text-align: center;
-      color: #3D2B1F;
+      color: #4D120B;
       font-size: 22px;
       margin-bottom: 18px;
     }
@@ -50,21 +50,21 @@
       flex-grow: 1;
       min-width: 0;
       padding: 12px;
-      border: 2px solid #D8CEBA;
+      border: 2px solid #D2C4A7;
       border-radius: 10px;
       font-family: 'Cairo', sans-serif;
       font-size: 15px;
       text-align: center;
       outline: none;
-      background-color: #FAF8F3;
+      background-color: #FAF6EE;
     }
 
     #quickJumpInput:focus {
-      border-color: #5C4333;
+      border-color: #4D120B;
     }
 
     #quickJumpBtn {
-      background-color: #5C4333;
+      background-color: #4D120B;
       color: #fff;
       border: none;
       border-radius: 10px;
@@ -96,22 +96,22 @@
     }
 
     .card-btn {
-      background-color: #FAF8F3;
-      border: 2px solid #D8CEBA;
+      background-color: #FAF6EE;
+      border: 2px solid #D2C4A7;
       border-radius: 10px;
       padding: 14px 0;
       text-align: center;
       font-weight: 800;
-      color: #3D2B1F;
+      color: #4D120B;
       font-size: 16px;
       cursor: pointer;
       transition: all 0.15s ease;
     }
 
     .card-btn:hover {
-      background-color: #5C4333;
+      background-color: #4D120B;
       color: #fff;
-      border-color: #5C4333;
+      border-color: #4D120B;
     }
 
     .card-btn:active {
@@ -131,12 +131,11 @@
 
     .card-container {
       width: 100%;
-      background-color: #FAF8F3;
-      border: 2px solid #D8CEBA;
+      background-color: #FAF6EE;
+      border: 2px solid #D2C4A7;
       border-radius: 16px;
       padding: 26px 16px 20px 16px;
       position: relative;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
     }
 
     .badge-number {
@@ -146,7 +145,7 @@
       transform: translateX(-50%);
       width: 38px;
       height: 38px;
-      background-color: #5C4333;
+      background-color: #4D120B;
       color: #FFF;
       border-radius: 50%;
       display: flex;
@@ -154,30 +153,29 @@
       align-items: center;
       font-size: 17px;
       font-weight: bold;
-      border: 2px solid #D8CEBA;
+      border: 2px solid #D2C4A7;
     }
 
     .title-box {
       text-align: center;
-      border: 1.5px solid #D8CEBA;
+      border: 1.5px solid #D2C4A7;
       border-radius: 10px;
       padding: 8px 14px;
-      margin: 6px auto 22px auto;
+      margin: 6px auto 25px auto;
       max-width: 85%;
-      background-color: #F3EFE6;
+      background-color: #FFFDF9;
     }
 
     .title-box h2 {
-      color: #3D2B1F;
-      font-size: 17px;
+      color: #4D120B;
+      font-size: 18px;
       font-weight: 800;
     }
 
-    /* التباعد المريح لأسطر الحوار */
     .chat-row {
       display: flex;
       align-items: center;
-      margin-bottom: 18px;
+      margin-bottom: 22px;
       gap: 10px;
     }
 
@@ -223,45 +221,45 @@
 
     .speaker-A .avatar,
     .speaker-A .speaker-label {
-      background-color: #2F5D62;
+      background-color: #0E382B;
     }
 
     .speaker-B .avatar,
     .speaker-B .speaker-label {
-      background-color: #6E4A35;
+      background-color: #4D120B;
     }
 
     .bubble {
       flex-grow: 1;
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-      border: 1px solid #E5DDCB;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+      border: 1px solid #EBE4D5;
     }
 
     .text-en {
-      background-color: #E2ECE9;
+      background-color: #C3E0B5;
       padding: 8px 12px;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 700;
-      color: #1A3038;
+      color: #000;
       direction: ltr;
       text-align: left;
     }
 
     .text-ar {
-      background-color: #FFFFFF;
+      background-color: #FFFDF9;
       padding: 7px 12px;
       font-size: 13px;
       font-weight: 700;
-      color: #383838;
+      color: #333;
       text-align: right;
     }
 
     .btn-audio {
       width: 38px;
       height: 38px;
-      background-color: #5C4333;
+      background-color: #4D120B;
       border: none;
       border-radius: 10px;
       color: #fff;
@@ -280,8 +278,8 @@
     }
 
     .footer-bar {
-      margin-top: 22px;
-      background-color: #5C4333;
+      margin-top: 25px;
+      background-color: #4D120B;
       border-radius: 10px;
       padding: 12px;
       display: flex;
@@ -305,19 +303,20 @@
        ===================================================== */
     .bottom-nav-bar {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      gap: 12px;
-      margin-top: 20px;
+      gap: 15px;
+      /* تم تكبير المسافة هنا لإنزال الأزرار للمكان المطلوب */
+      margin-top: 65px; 
     }
 
     .nav-arrow-btn {
       flex: 1;
-      height: 44px;
+      height: 46px;
       border: none;
       border-radius: 10px;
       color: #fff;
-      font-size: 20px;
+      font-size: 22px; 
       display: flex;
       justify-content: center;
       align-items: center;
@@ -329,22 +328,21 @@
       transform: scale(0.95);
     }
 
-    /* ألوان هادئة ومميزة للأزرار */
     .btn-prev {
-      background-color: #245C66; /* بترولي ناعم ومريح */
+      background-color: #4A90E2; 
     }
 
     .btn-next {
-      background-color: #2C5E3B; /* زيتي هادئ وراقي */
+      background-color: #4CAF50; 
     }
 
     .btn-list-home {
-      width: 50px;
-      height: 44px;
-      background-color: #E7DECD;
-      border: 1.5px solid #D0C2A8;
+      width: 60px;
+      height: 46px;
+      background-color: #F3E5AB; 
+      border: 2px solid #D4AF37; 
       border-radius: 10px;
-      color: #4A3B32;
+      color: #4D120B;
       font-size: 20px;
       display: flex;
       justify-content: center;
@@ -355,11 +353,11 @@
 
     .btn-list-home:active {
       transform: scale(0.95);
-      background-color: #DCCFBA;
+      background-color: #E6D59A;
     }
 
     .nav-arrow-btn:disabled {
-      opacity: 0.25;
+      opacity: 0.35;
       cursor: not-allowed;
     }
 
@@ -445,14 +443,12 @@
       '<path fill="#E4E7EC" d="M118.549,216.408C121.285,218.089 123.329,219.17 127.163,224.723C131.766,231.388 132.221,241.025 132.291,242.503C132.644,249.978 129.928,271.717 124.838,276.841C124.357,277.325 124.319,277.364 119.398,283.417C118.392,284.654 115.18,287.369 119.453,293.535C124.043,300.157 138.599,300.85 145.577,303.294C150.626,305.062 152.399,305.8 155.191,309.694C155.701,310.407 160.549,320.878 160.506,322.5C160.483,323.352 160.431,323.353 159.831,323.957C159.246,324.547 159.114,324.27 152.498,324.449C147.575,324.582 147.592,324.845 140.503,324.822C134.974,324.804 134.993,325.176 129.481,324.947C127.23,324.853 127.245,325.114 124.496,324.901C123.859,324.851 123.864,324.938 116.511,324.971C113.496,324.984 113.511,325.09 110.487,324.915C109.918,324.882 81.601,324.748 79.504,324.822C74.492,325 74.502,324.839 69.498,325.05C66.009,325.197 66.023,324.86 62.524,324.961C60.749,325.012 51.335,324.157 50.634,323.413C48.896,321.569 53.968,309.424 60.424,305.376C66.191,301.759 69.649,301.926 80.555,298.727C82.362,298.197 84.556,298.046 88.536,295.549C90.609,294.249 92.752,290.839 92.847,289.512C93.16,285.137 86.575,280.044 83.382,273.566C81.125,268.987 80.946,268.753 79.384,264.491C79.288,264.231 79.188,263.956 79.081,263.664C78.998,263.436 77.403,243.002 78.431,236.492C79.707,228.41 85.186,220.776 89.687,217.78C90.667,217.127 95.005,214.24 103.545,212.817C107.08,212.228 113.658,214.032 118.549,216.408Z"/>' +
       '</g></g></svg>';
 
-    // إنشاء أزرار الشبكة
     var cardsHTML = "";
     for (var i = 1; i <= TOTAL_CONVERSATIONS; i++) {
       cardsHTML += '<button type="button" class="card-btn" onclick="openConversation(' + i + ')">' + i + '</button>';
     }
     document.getElementById("cardGrid").innerHTML = cardsHTML;
 
-    // مشغل الصوت
     player.addEventListener("ended", function() {
       if (currentlyPlayingBtn) {
         player.currentTime = 0;
