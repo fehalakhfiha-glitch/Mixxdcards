@@ -120,29 +120,51 @@ export async function removeToken(token) {
   if (supabaseEnabled) {
     try {
       await supabase.from('tokens').delete().eq('token', tokenValue)
+      await supabase.from('sessions').delete().eq('token', tokenValue)
     } catch (err) {
       console.error('Supabase remove failed:', err)
     }
   }
 }
 
-export function login(token) {
+export async function login(token) {
   cleanupSessions()
   const trimmed = String(token).trim()
   const tokens = readTokens()
   if (!tokens.some((t) => t.token === trimmed)) return { ok: false, reason: 'invalid' }
 
-  const sessions = readSessions()
-  const existing = sessions[trimmed]
-  const currentSessionId = sessionStorage.getItem(SESSION_ID_KEY)
+  const sessionId = generateSessionId()
 
-  if (existing && existing.sessionId !== currentSessionId) {
-    return { ok: false, reason: 'in-use' }
+  if (supabaseEnabled) {
+    try {
+      const now = Date.now()
+      const { data, error } = await supabase
+        .from('sessions')
+        .select('session_id, last_seen')
+        .eq('token', trimmed)
+        .single()
+      if (error && error.code !== 'PGRST116') throw error
+      if (data && now - data.last_seen < SESSION_TTL_MS) {
+        return { ok: false, reason: 'in-use' }
+      }
+      const { error: upsertError } = await supabase
+        .from('sessions')
+        .upsert({ token: trimmed, session_id: sessionId, last_seen: now }, { onConflict: 'token' })
+      if (upsertError) throw upsertError
+    } catch (err) {
+      console.error('Supabase login failed:', err)
+      return { ok: false, reason: 'supabase' }
+    }
+  } else {
+    const sessions = readSessions()
+    const existing = sessions[trimmed]
+    const currentSessionId = sessionStorage.getItem(SESSION_ID_KEY)
+    if (existing && existing.sessionId !== currentSessionId) {
+      return { ok: false, reason: 'in-use' }
+    }
+    sessions[trimmed] = { sessionId, lastSeen: Date.now() }
+    writeSessions(sessions)
   }
-
-  const sessionId = currentSessionId || generateSessionId()
-  sessions[trimmed] = { sessionId, lastSeen: Date.now() }
-  writeSessions(sessions)
 
   sessionStorage.setItem(SESSION_ID_KEY, sessionId)
   sessionStorage.setItem(CURRENT_TOKEN_KEY, trimmed)
@@ -151,7 +173,7 @@ export function login(token) {
   return { ok: true, sessionId }
 }
 
-export function logout() {
+export async function logout() {
   const token = sessionStorage.getItem(CURRENT_TOKEN_KEY)
   const sessionId = sessionStorage.getItem(SESSION_ID_KEY)
   if (token) {
@@ -159,6 +181,13 @@ export function logout() {
     if (sessions[token]?.sessionId === sessionId) {
       delete sessions[token]
       writeSessions(sessions)
+    }
+    if (supabaseEnabled) {
+      try {
+        await supabase.from('sessions').delete().eq('token', token)
+      } catch (err) {
+        console.error('Supabase logout failed:', err)
+      }
     }
   }
   sessionStorage.removeItem(SESSION_ID_KEY)
@@ -179,10 +208,34 @@ export function isAuthenticated() {
   return sessions[token]?.sessionId === sessionId
 }
 
-export function touchSession() {
+export async function touchSession() {
   const token = sessionStorage.getItem(CURRENT_TOKEN_KEY)
   const sessionId = sessionStorage.getItem(SESSION_ID_KEY)
   if (!token || !sessionId) return
+
+  if (supabaseEnabled) {
+    try {
+      const now = Date.now()
+      const { data, error } = await supabase
+        .from('sessions')
+        .select('session_id, last_seen')
+        .eq('token', token)
+        .single()
+      if (error) throw error
+      if (data && data.session_id === sessionId && now - data.last_seen < SESSION_TTL_MS) {
+        await supabase.from('sessions').update({ last_seen: now }).eq('token', token)
+        const sessions = readSessions()
+        sessions[token] = { sessionId, lastSeen: now }
+        writeSessions(sessions)
+      } else {
+        await logout()
+      }
+    } catch (err) {
+      console.error('Supabase touchSession failed:', err)
+    }
+    return
+  }
+
   const sessions = readSessions()
   if (sessions[token]?.sessionId === sessionId) {
     sessions[token].lastSeen = Date.now()
