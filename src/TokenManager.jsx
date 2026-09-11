@@ -71,6 +71,15 @@ export default function TokenManager({ onBack }) {
   const goPrev = () => setPage(Math.max(1, effectivePage - 1))
   const goNext = () => setPage(Math.min(totalPages, effectivePage + 1))
 
+  const handleExport = async () => {
+    try {
+      await navigator.clipboard.writeText(JSON.stringify(tokens, null, 2))
+      setError('تم نسخ الرموز. الصقها في ملف public/tokens.json وأعد النشر.')
+    } catch {
+      setError('تعذر النسخ. انسخ الرموز يدوياً من localStorage.')
+    }
+  }
+
   return (
     <div className="auth-container">
       <div className="auth-box">
@@ -165,6 +174,9 @@ export default function TokenManager({ onBack }) {
             )}
             <button type="button" className="link-btn" onClick={onBack}>
               رجوع للدخول
+            </button>
+            <button type="button" className="link-btn" onClick={handleExport}>
+              نسخ الرموز للنشر
             </button>
           </>
         )}

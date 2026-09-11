@@ -63,6 +63,19 @@ export function seedDefaultTokens() {
   }
 }
 
+export async function syncTokens() {
+  try {
+    const response = await fetch('/tokens.json')
+    if (!response.ok) return
+    const remote = await response.json()
+    if (Array.isArray(remote) && remote.length > 0) {
+      writeTokens(remote.map(normalizeToken))
+    }
+  } catch {
+    // keep existing localStorage tokens if fetch fails
+  }
+}
+
 export function listTokens() {
   return readTokens()
 }

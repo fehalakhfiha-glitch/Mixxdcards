@@ -3,6 +3,7 @@ import './App.css'
 import Login from './Login.jsx'
 import TokenManager from './TokenManager.jsx'
 import {
+  syncTokens,
   seedDefaultTokens,
   isAuthenticated,
   logout,
@@ -97,7 +98,9 @@ function App() {
   }, [])
 
   useEffect(() => {
-    seedDefaultTokens()
+    syncTokens().finally(() => {
+      if (listTokens().length === 0) seedDefaultTokens()
+    })
   }, [])
 
   useEffect(() => {
