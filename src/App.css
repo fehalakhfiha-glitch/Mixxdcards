@@ -496,12 +496,13 @@
 
 .token-add-form {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 10px;
 }
 
 .token-add-form input {
-  flex-grow: 1;
+  flex: 1 1 120px;
   min-width: 0;
 }
 
@@ -522,6 +523,7 @@
   align-items: center;
   padding: 10px 12px;
   border-bottom: 1px solid #EBE4D5;
+  gap: 10px;
 }
 
 .token-list li:last-child {
@@ -533,9 +535,23 @@
   color: #999;
 }
 
-.token-list span {
+.token-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.token-value {
   font-weight: 700;
   color: #4D120B;
+  direction: ltr;
+  word-break: break-all;
+}
+
+.token-mobile {
+  font-size: 13px;
+  color: #777;
   direction: ltr;
 }
 

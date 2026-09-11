@@ -9,9 +9,18 @@ function generateSessionId() {
   return `${Date.now()}-${Math.random().toString(36).slice(2)}`
 }
 
+function normalizeToken(t) {
+  if (typeof t === 'string') return { token: t, mobile: '' }
+  if (t && typeof t === 'object') {
+    return { token: String(t.token || ''), mobile: String(t.mobile || '') }
+  }
+  return { token: '', mobile: '' }
+}
+
 function readTokens() {
   try {
-    return JSON.parse(localStorage.getItem(TOKENS_KEY)) || []
+    const raw = JSON.parse(localStorage.getItem(TOKENS_KEY))
+    return Array.isArray(raw) ? raw.map(normalizeToken) : []
   } catch {
     return []
   }
@@ -50,7 +59,7 @@ function cleanupSessions() {
 export function seedDefaultTokens() {
   const tokens = readTokens()
   if (tokens.length === 0) {
-    writeTokens(['mixxd2024'])
+    writeTokens([{ token: 'mixxd2024', mobile: '' }])
   }
 }
 
@@ -58,21 +67,23 @@ export function listTokens() {
   return readTokens()
 }
 
-export function addToken(token) {
+export function addToken(token, mobile) {
   const tokens = readTokens()
-  const trimmed = String(token).trim()
-  if (!trimmed || tokens.includes(trimmed)) return false
-  tokens.push(trimmed)
+  const tokenTrim = String(token).trim()
+  const mobileTrim = String(mobile).trim()
+  if (!tokenTrim || tokens.some((t) => t.token === tokenTrim)) return false
+  tokens.push({ token: tokenTrim, mobile: mobileTrim })
   writeTokens(tokens)
   return true
 }
 
 export function removeToken(token) {
-  const tokens = readTokens().filter((t) => t !== token)
+  const tokenValue = typeof token === 'string' ? token : token?.token
+  const tokens = readTokens().filter((t) => t.token !== tokenValue)
   writeTokens(tokens)
   const sessions = readSessions()
-  if (sessions[token]) {
-    delete sessions[token]
+  if (sessions[tokenValue]) {
+    delete sessions[tokenValue]
     writeSessions(sessions)
   }
 }
@@ -81,7 +92,7 @@ export function login(token) {
   cleanupSessions()
   const trimmed = String(token).trim()
   const tokens = readTokens()
-  if (!tokens.includes(trimmed)) return { ok: false, reason: 'invalid' }
+  if (!tokens.some((t) => t.token === trimmed)) return { ok: false, reason: 'invalid' }
 
   const sessions = readSessions()
   const existing = sessions[trimmed]

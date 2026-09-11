@@ -9,6 +9,7 @@ export default function TokenManager({ onBack }) {
     return listTokens()
   })
   const [newToken, setNewToken] = useState('')
+  const [newMobile, setNewMobile] = useState('')
   const [password, setPassword] = useState('')
   const [unlocked, setUnlocked] = useState(false)
   const [error, setError] = useState('')
@@ -28,10 +29,16 @@ export default function TokenManager({ onBack }) {
 
   const handleAdd = (e) => {
     e.preventDefault()
-    const trimmed = newToken.trim()
-    if (!trimmed) return
-    if (addToken(trimmed)) {
+    const tokenTrim = newToken.trim()
+    const mobileTrim = newMobile.trim()
+    if (!tokenTrim) return
+    if (!mobileTrim) {
+      setError('أدخل رقم الجوال لصاحب الرمز.')
+      return
+    }
+    if (addToken(tokenTrim, mobileTrim)) {
       setNewToken('')
+      setNewMobile('')
       setError('')
       refresh()
     } else {
@@ -66,6 +73,14 @@ export default function TokenManager({ onBack }) {
                 value={newToken}
                 onChange={(e) => setNewToken(e.target.value)}
                 placeholder="رمز جديد"
+                dir="ltr"
+              />
+              <input
+                type="tel"
+                value={newMobile}
+                onChange={(e) => setNewMobile(e.target.value)}
+                placeholder="رقم الجوال"
+                dir="ltr"
               />
               <button type="submit">إضافة</button>
             </form>
@@ -73,12 +88,15 @@ export default function TokenManager({ onBack }) {
             <ul className="token-list">
               {tokens.length === 0 && <li className="empty">لا توجد رموز</li>}
               {tokens.map((t) => (
-                <li key={t}>
-                  <span>{t}</span>
+                <li key={t.token}>
+                  <div className="token-info">
+                    <span className="token-value">{t.token}</span>
+                    <span className="token-mobile">{t.mobile || '—'}</span>
+                  </div>
                   <button
                     type="button"
                     onClick={() => {
-                      removeToken(t)
+                      removeToken(t.token)
                       refresh()
                     }}
                   >
