@@ -64,7 +64,7 @@ export async function syncTokens() {
     const { data, error } = await supabase
       .from('tokens')
       .select('token, mobile')
-      .order('id')
+      .order('id', { ascending: false })
     if (error) throw error
     const tokens = (data || []).map(normalizeToken)
     writeTokens(tokens)
@@ -103,7 +103,7 @@ export async function addToken(token, mobile) {
     }
   }
 
-  tokens.push(newToken)
+  tokens.unshift(newToken)
   writeTokens(tokens)
   return { ok: true }
 }
