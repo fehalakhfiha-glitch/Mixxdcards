@@ -560,3 +560,53 @@
   font-size: 13px;
   border-radius: 7px;
 }
+
+.token-search {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border: 2px solid #D2C4A7;
+  border-radius: 10px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 14px;
+  text-align: center;
+  outline: none;
+  background-color: #FFFDF9;
+}
+
+.token-search:focus {
+  border-color: #4D120B;
+}
+
+.token-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.token-pagination button {
+  background-color: #4D120B;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.token-pagination button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.token-pagination span {
+  font-size: 13px;
+  font-weight: 700;
+  color: #4D120B;
+  white-space: nowrap;
+}
