@@ -1,0 +1,30 @@
+{
+  "id": 50,
+  "title": "محادثة 50- الاعتذار",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I'm sorry I'm late.",
+      "ar": "آسف على التأخير."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "That's okay.",
+      "ar": "لا بأس."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "It won't happen again.",
+      "ar": "لن يتكرر ذلك."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "It's fine.",
+      "ar": "لا مشكلة."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": 25,
+  "title": "محادثة 25- إعطاء رأي",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "What do you think about this movie?",
+      "ar": "ما رأيك في هذا الفيلم؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "It's really interesting.",
+      "ar": "إنه مثير للاهتمام حقًا."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I want to watch it.",
+      "ar": "أريد مشاهدته."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "You should!",
+      "ar": "يجب عليك ذلك!"
+    }
+  ]
+}

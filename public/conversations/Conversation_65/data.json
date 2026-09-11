@@ -1,0 +1,30 @@
+{
+  "id": 65,
+  "title": "محادثة 65 – اتخاذ قرار",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Should we go out or stay home?",
+      "ar": "هل نخرج أم نبقى في المنزل؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Let’s go out.",
+      "ar": "هيا بنا نخرج."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Okay, good idea.",
+      "ar": "حسنًا، فكرة جيدة."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Let’s go now.",
+      "ar": "هيا بنا الآن."
+    }
+  ]
+}

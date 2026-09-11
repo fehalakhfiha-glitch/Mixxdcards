@@ -1,0 +1,30 @@
+{
+  "id": 5,
+  "title": "محادثة 5- التحدث عن الأمس",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "What did you do yesterday?",
+      "ar": "ماذا فعلت أمس؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I went to the park.",
+      "ar": "ذهبت إلى الحديقة."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Did you enjoy it?",
+      "ar": "هل استمتعت؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, it was fun.",
+      "ar": "نعم، كان ممتعًا."
+    }
+  ]
+}

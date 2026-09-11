@@ -1,0 +1,30 @@
+{
+  "id": 74,
+  "title": "محادثة 74 – وصف مكان",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "How is your new house?",
+      "ar": "كيف منزلك الجديد؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "It’s big and comfortable.",
+      "ar": "إنه كبير ومريح."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "That’s nice.",
+      "ar": "هذا جميل."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, I like it.",
+      "ar": "نعم، يعجبني."
+    }
+  ]
+}

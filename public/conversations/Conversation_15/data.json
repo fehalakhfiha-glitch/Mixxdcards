@@ -1,0 +1,30 @@
+{
+  "id": 15,
+  "title": "محادثة 15 - التعبير عن الجوع",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I'm hungry.",
+      "ar": "أنا جائع."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Let's get something to eat.",
+      "ar": "لنذهب لنأكل شيئًا."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "That sounds good.",
+      "ar": "يبدو جيدًا."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "There's a resturant nearby.",
+      "ar": "هناك مطعم قريب."
+    }
+  ]
+}

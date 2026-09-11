@@ -1,0 +1,30 @@
+{
+  "id": 70,
+  "title": "محادثة 70 - مشكلة بسيطة",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Why are you late again?",
+      "ar": "لماذا تأخرت مرة أخرى؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I woke up late.",
+      "ar": "استيقظت متأخرًا."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "You should sleep earlier.",
+      "ar": "يجب أن تنام أبكر."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I will try.",
+      "ar": "سأحاول."
+    }
+  ]
+}

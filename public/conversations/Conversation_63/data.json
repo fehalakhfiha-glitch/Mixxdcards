@@ -1,0 +1,30 @@
+{
+  "id": 63,
+  "title": "محادثة 63 – الاتفاق في الرأي",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I think this place is nice.",
+      "ar": "أعتقد أن هذا المكان جميل."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I agree.",
+      "ar": "أتفق معك."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "The food is good too.",
+      "ar": "الطعام جيد أيضًا."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, it is.",
+      "ar": "نعم، إنه كذلك."
+    }
+  ]
+}

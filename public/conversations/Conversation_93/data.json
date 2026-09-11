@@ -1,0 +1,30 @@
+{
+  "id": 93,
+  "title": "محادثة 93 – السؤال عن اللغة",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Do you speak English?",
+      "ar": "هل تتحدث الإنجليزية؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "A little.",
+      "ar": "قليلاً."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "That's okay.",
+      "ar": "لا بأس."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I'm still learning.",
+      "ar": "ما زلت أتعلم."
+    }
+  ]
+}

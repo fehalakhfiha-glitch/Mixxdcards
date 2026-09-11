@@ -1,0 +1,30 @@
+{
+  "id": 84,
+  "title": "محادثة 84 - طاب الانتظار",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Please wait here.",
+      "ar": "من فضلك انتظر هنا."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Okay.",
+      "ar": "حسنًا."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I'll be back soon.",
+      "ar": "سأعود قريبًا."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "No problem.",
+      "ar": "لا مشكلة."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": 34,
+  "title": "محادثة 34- التحدث مع التاكسي",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Can you take me to the hotel?",
+      "ar": "هل يمكنك أن تأخذني إلى الفندق؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Sure, hop in.",
+      "ar": "بالتأكيد، اركب."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "How much is the fare?",
+      "ar": "كم الأجرة؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "It's 20 dollars.",
+      "ar": "20 دولارًا."
+    }
+  ]
+}

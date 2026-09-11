@@ -1,0 +1,30 @@
+{
+  "id": 72,
+  "title": "محادثة 72 – التعبير عن الرأي",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "This book is very interesting.",
+      "ar": "هذا الكتاب شيق للغاية."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Really? I think it's boring.",
+      "ar": "حقًا؟ أعتقد أنه ممل."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Why do you think that?",
+      "ar": "لماذا تعتقد ذلك؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Because it's too long.",
+      "ar": "لأنه طويل جدًا."
+    }
+  ]
+}

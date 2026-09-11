@@ -1,0 +1,30 @@
+{
+  "id": 59,
+  "title": "محادثة 59 – السؤال عن السبب",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Why are you happy today?",
+      "ar": "لماذا أنت سعيد اليوم؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Because I passed my exam.",
+      "ar": "لأنني نجحت في امتحاني."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "That's great!",
+      "ar": "هذا رائع!"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Thank you.",
+      "ar": "شكرًا."
+    }
+  ]
+}

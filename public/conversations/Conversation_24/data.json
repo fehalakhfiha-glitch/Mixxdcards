@@ -1,0 +1,30 @@
+{
+  "id": 24,
+  "title": "محادثة 24- طلب فتح النافذة",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Could you open the window?",
+      "ar": "هل يمكنك فتح النافذة؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Sure.",
+      "ar": "بالتأكيد."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "It's very hot here.",
+      "ar": "الجو حار جدًا هنا."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "You're right.",
+      "ar": "أنت محق."
+    }
+  ]
+}

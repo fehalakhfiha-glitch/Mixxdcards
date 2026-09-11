@@ -1,0 +1,30 @@
+{
+  "id": 33,
+  "title": "محادثة 33- في الفندق",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Hello, I have a reservation.",
+      "ar": "مرحبًا، لدي حجز."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "What's your name?",
+      "ar": "ما اسمك؟"
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "My name is Ali.",
+      "ar": "اسمي علي."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Here is your room key.",
+      "ar": "هذا مفتاح غرفتك."
+    }
+  ]
+}

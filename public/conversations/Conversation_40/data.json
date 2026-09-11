@@ -1,0 +1,30 @@
+{
+  "id": 40,
+  "title": "محادثة 40- وصف الإختبار",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "How is the test?",
+      "ar": "كيف الاختبار؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "It's easy.",
+      "ar": "إنه سهل."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Really?",
+      "ar": "حقًّا؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, don't worry.",
+      "ar": "نعم، لا تقلق."
+    }
+  ]
+}

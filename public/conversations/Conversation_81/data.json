@@ -1,0 +1,30 @@
+{
+  "id": 81,
+  "title": "محادثة 81 – في المطار",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Where is gate 5?",
+      "ar": "أين البوابة 5؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "It’s over there.",
+      "ar": "إنها هناك."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Thank you.",
+      "ar": "شكرا"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "You’re welcome.",
+      "ar": "على الرحب والسعة."
+    }
+  ]
+}

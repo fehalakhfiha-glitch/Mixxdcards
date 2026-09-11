@@ -1,0 +1,30 @@
+{
+  "id": 73,
+  "title": "محادثة 73 - طلب موعد",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Can we meet tomorrow?",
+      "ar": "هل يمكن أن نلتقي غدًا؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "What time?",
+      "ar": "متى؟"
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "At 6 p.m.",
+      "ar": "الساعة 6 مساءً."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "That works for me.",
+      "ar": "هذا يناسبني."
+    }
+  ]
+}

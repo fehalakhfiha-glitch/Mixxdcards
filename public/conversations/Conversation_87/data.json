@@ -1,0 +1,30 @@
+{
+  "id": 87,
+  "title": "محادثة 87 – إلغاء موعد",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I'm sorry, I can't come today.",
+      "ar": "أنا آسف, لا أستطيع الحضور اليوم."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "That's okay.",
+      "ar": "لا بأس."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Can we meet tomorrow instead?",
+      "ar": "هل يمكن أن نلتقي غدًا بدلًا من ذلك؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Sure, no problem.",
+      "ar": "بالتأكيد, لا مشكلة."
+    }
+  ]
+}

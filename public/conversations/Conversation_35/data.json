@@ -1,0 +1,30 @@
+{
+  "id": 35,
+  "title": "محادثة 35- شراء ملابس",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Do you have this in a larger size?",
+      "ar": "هل لديكم هذا بمقاس أكبر؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, try this one.",
+      "ar": "نعم، جرب هذا."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "It fits well.",
+      "ar": "مقاسه مناسب."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Great !",
+      "ar": "رائع!"
+    }
+  ]
+}

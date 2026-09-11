@@ -1,0 +1,30 @@
+{
+  "id": 57,
+  "title": "محادثة 57 – السؤال عن الطريق",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Is the bank far from here?",
+      "ar": "هل البنك بعيد من هنا؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "No, it's close.",
+      "ar": "لا، إنه قريب."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "How long does it take?",
+      "ar": "كم يستغرق الوقت؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "About 5 minutes.",
+      "ar": "حوالي 5 دقائق."
+    }
+  ]
+}

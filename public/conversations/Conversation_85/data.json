@@ -1,0 +1,30 @@
+{
+  "id": 85,
+  "title": "محادثة 85 – السؤال عن النتيجة",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Did you pass the test?",
+      "ar": "هل نجحت في الاختبار؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, I did.",
+      "ar": "نعم، نجحت."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Congratulations!",
+      "ar": "مبروك!"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Thank you!",
+      "ar": "شكرًا!"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": 95,
+  "title": "محادثة 95 – في محطة القطار",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "When does the train arrive?",
+      "ar": "متى يصل القطار؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "It arrives at 7 p.m.",
+      "ar": "يصل الساعة 7 مساءً."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Do we have enough time?",
+      "ar": "هل لدينا وقت كافٍ؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, don't worry.",
+      "ar": "نعم، لا تقلق."
+    }
+  ]
+}

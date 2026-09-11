@@ -1,0 +1,30 @@
+{
+  "id": 4,
+  "title": "محادثة 4- الهوايات",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "What do you like to do?",
+      "ar": "ماذا تحب أن تفعل؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I like reading and playing football.",
+      "ar": "أحب القراءة ولعب كرة القدم."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Do you like music?",
+      "ar": "هل تحب الموسيقى؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "No, I don’t like it much.",
+      "ar": "لا، لا أحبها كثيرًا."
+    }
+  ]
+}

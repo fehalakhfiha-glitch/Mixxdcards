@@ -1,0 +1,30 @@
+{
+  "id": 67,
+  "title": "محادثة 67 – طلب خدمة",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Can you do me a favor?",
+      "ar": "هل يمكنك أن تسدي لي خدمة؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Sure, what is it?",
+      "ar": "بالطبع، ما هي؟"
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Can you carry this bag?",
+      "ar": "هل يمكنك حمل هذه الحقيبة؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "No problem.",
+      "ar": "لا مشكلة."
+    }
+  ]
+}

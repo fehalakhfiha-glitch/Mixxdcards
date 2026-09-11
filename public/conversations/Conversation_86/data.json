@@ -1,0 +1,30 @@
+{
+  "id": 86,
+  "title": "محادثة 86 – في الصيدلية",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Excuse me, do you have medicine for a cold?",
+      "ar": "عذرًا، هل لديكم دواء للزكام؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, we do.",
+      "ar": "نعم، لدينا."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "How often should I take it?",
+      "ar": "كم مرة يجب أن أتناوله؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Twice a day.",
+      "ar": "مرتين في اليوم."
+    }
+  ]
+}

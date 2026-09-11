@@ -1,0 +1,30 @@
+{
+  "id": 41,
+  "title": "محادثة 41- عند الصيدلية",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I have a headache.",
+      "ar": "لدي صداع."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Do you need medicine?",
+      "ar": "هل تحتاج دواء؟"
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Yes, please.",
+      "ar": "نعم، من فضلك."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Take this twice a day.",
+      "ar": "خذ هذا مرتين يوميًا."
+    }
+  ]
+}
