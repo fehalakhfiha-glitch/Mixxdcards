@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { login } from './auth'
 
-export default function Login({ onLogin, onManageTokens }) {
+export default function Login({ onLogin, onManageTokens, onTrial }) {
   const [token, setToken] = useState('')
   const [error, setError] = useState('')
 
@@ -36,6 +36,9 @@ export default function Login({ onLogin, onManageTokens }) {
         {error && <div className="auth-error">{error}</div>}
         <button type="button" className="link-btn" onClick={onManageTokens}>
           إدارة الرموز
+        </button>
+        <button type="button" className="link-btn trial-btn" onClick={onTrial}>
+          تجربة
         </button>
       </div>
     </div>

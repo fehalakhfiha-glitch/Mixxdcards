@@ -98,6 +98,22 @@
   transform: scale(0.95);
 }
 
+.card-btn:disabled,
+.card-btn.disabled {
+  background-color: #E0DCD5;
+  color: #999;
+  border-color: #CFC9BF;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.card-btn:disabled:hover,
+.card-btn.disabled:hover {
+  background-color: #E0DCD5;
+  color: #999;
+  border-color: #CFC9BF;
+}
+
 /* =====================================================
    قسم عرض المحادثة
    ===================================================== */
@@ -492,6 +508,24 @@
   text-decoration: underline;
   cursor: pointer;
   margin-top: 4px;
+}
+
+.trial-btn {
+  background-color: #4D120B;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: transform 0.1s ease;
+}
+
+.trial-btn:active {
+  transform: scale(0.97);
 }
 
 .token-add-form {

@@ -12,6 +12,8 @@ import {
 } from './auth.js'
 
 const TOTAL_CONVERSATIONS = 100
+const TRIAL_URL =
+  'https://mixxd.net/%D8%A8%D8%B7%D8%A7%D9%82%D8%A7%D8%AA-%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%A5%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A%D8%A9-%D9%84%D9%84%D9%85%D8%A8%D8%AA%D8%AF%D8%A6%D9%8A%D9%86-%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89-%D8%A7%D9%84%D8%A3%D9%88%D9%84/p432595306'
 
 function PersonIcon() {
   return (
@@ -31,6 +33,7 @@ function PersonIcon() {
 function App() {
   const [authView, setAuthView] = useState('login')
   const [isLoggedIn, setIsLoggedIn] = useState(() => isAuthenticated())
+  const [isTrial, setIsTrial] = useState(false)
   const [view, setView] = useState('list')
   const [currentConversation, setCurrentConversation] = useState(1)
   const [data, setData] = useState(null)
@@ -76,6 +79,22 @@ function App() {
     setData(null)
     stopPlayback()
   }, [stopPlayback])
+
+  const handleTrial = useCallback(() => {
+    setIsTrial(true)
+    setView('list')
+    setJumpInput('')
+    setJumpError('')
+    window.scrollTo(0, 0)
+  }, [])
+
+  const handleTrialBack = useCallback(() => {
+    setIsTrial(false)
+    setView('list')
+    setJumpInput('')
+    setJumpError('')
+    window.scrollTo(0, 0)
+  }, [])
 
   useEffect(() => {
     seedDefaultTokens()
@@ -140,6 +159,21 @@ function App() {
     [stopPlayback]
   )
 
+  const handleLessonSelect = useCallback(
+    (id) => {
+      id = parseInt(id, 10)
+      if (!id || id < 1 || id > TOTAL_CONVERSATIONS) return
+      if (isTrial) {
+        if (id === 1 || id === 2) {
+          window.open(TRIAL_URL, '_blank')
+        }
+        return
+      }
+      openConversation(id)
+    },
+    [isTrial, openConversation]
+  )
+
   const previousConversation = useCallback(() => {
     if (currentConversation > 1) openConversation(currentConversation - 1)
   }, [currentConversation, openConversation])
@@ -158,6 +192,15 @@ function App() {
 
   const goToCard = () => {
     const val = parseInt(jumpInput, 10)
+    if (isTrial) {
+      if (val !== 1 && val !== 2) {
+        setJumpError('من فضلك اكتب رقم صحيح من 1 إلى 2')
+        return
+      }
+      setJumpError('')
+      handleLessonSelect(val)
+      return
+    }
     if (!val || val < 1 || val > TOTAL_CONVERSATIONS) {
       setJumpError(`من فضلك اكتب رقم صحيح من 1 إلى ${TOTAL_CONVERSATIONS}`)
       return
@@ -199,15 +242,16 @@ function App() {
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [view, previousConversation, nextConversation])
 
-  if (!isLoggedIn && authView === 'tokens') {
+  if (!isLoggedIn && !isTrial && authView === 'tokens') {
     return <TokenManager onBack={() => setAuthView('login')} />
   }
 
-  if (!isLoggedIn) {
+  if (!isLoggedIn && !isTrial) {
     return (
       <Login
         onLogin={handleLogin}
         onManageTokens={() => setAuthView('tokens')}
+        onTrial={handleTrial}
       />
     )
   }
@@ -217,10 +261,25 @@ function App() {
       {view === 'list' && (
         <div id="conversationList">
           <div className="auth-bar">
-            <span className="auth-token">الرمز: {getCurrentToken()}</span>
-            <button type="button" className="auth-logout" onClick={handleLogout}>
-              خروج
-            </button>
+            {isTrial ? (
+              <>
+                <span className="auth-token">تجربة</span>
+                <button
+                  type="button"
+                  className="auth-logout"
+                  onClick={handleTrialBack}
+                >
+                  خروج من التجربة
+                </button>
+              </>
+            ) : (
+              <>
+                <span className="auth-token">الرمز: {getCurrentToken()}</span>
+                <button type="button" className="auth-logout" onClick={handleLogout}>
+                  خروج
+                </button>
+              </>
+            )}
           </div>
           <h1>اختر المحادثة</h1>
           <div className="search-bar">
@@ -228,8 +287,8 @@ function App() {
               id="quickJumpInput"
               type="number"
               min="1"
-              max="100"
-              placeholder="اكتب رقم البطاقة (1-100)"
+              max={isTrial ? 2 : TOTAL_CONVERSATIONS}
+              placeholder={isTrial ? 'اكتب رقم البطاقة (1-2)' : `اكتب رقم البطاقة (1-${TOTAL_CONVERSATIONS})`}
               value={jumpInput}
               onChange={(e) => setJumpInput(e.target.value)}
               onKeyDown={(e) => {
@@ -244,16 +303,20 @@ function App() {
             {jumpError}
           </div>
           <div className="card-grid" id="cardGrid">
-            {Array.from({ length: TOTAL_CONVERSATIONS }, (_, i) => i + 1).map((n) => (
-              <button
-                key={n}
-                type="button"
-                className="card-btn"
-                onClick={() => openConversation(n)}
-              >
-                {n}
-              </button>
-            ))}
+            {Array.from({ length: TOTAL_CONVERSATIONS }, (_, i) => i + 1).map((n) => {
+              const disabled = isTrial && n > 2
+              return (
+                <button
+                  key={n}
+                  type="button"
+                  className={`card-btn ${disabled ? 'disabled' : ''}`}
+                  onClick={() => handleLessonSelect(n)}
+                  disabled={disabled}
+                >
+                  {n}
+                </button>
+              )
+            })}
           </div>
         </div>
       )}
