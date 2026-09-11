@@ -97,6 +97,7 @@ export function login(token) {
 
   sessionStorage.setItem(SESSION_ID_KEY, sessionId)
   sessionStorage.setItem(CURRENT_TOKEN_KEY, trimmed)
+  notifyAuthChange()
 
   return { ok: true, sessionId }
 }
@@ -113,6 +114,7 @@ export function logout() {
   }
   sessionStorage.removeItem(SESSION_ID_KEY)
   sessionStorage.removeItem(CURRENT_TOKEN_KEY)
+  notifyAuthChange()
 }
 
 export function getCurrentToken() {
