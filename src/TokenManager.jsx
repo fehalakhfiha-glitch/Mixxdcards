@@ -71,13 +71,17 @@ export default function TokenManager({ onBack }) {
   const goPrev = () => setPage(Math.max(1, effectivePage - 1))
   const goNext = () => setPage(Math.min(totalPages, effectivePage + 1))
 
-  const handleExport = async () => {
-    try {
-      await navigator.clipboard.writeText(JSON.stringify(tokens, null, 2))
-      setError('تم نسخ الرموز. الصقها في ملف public/tokens.json وأعد النشر.')
-    } catch {
-      setError('تعذر النسخ. انسخ الرموز يدوياً من localStorage.')
-    }
+  const handleDownload = () => {
+    const blob = new Blob([JSON.stringify(tokens, null, 2)], {
+      type: 'application/json',
+    })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'tokens.json'
+    a.click()
+    URL.revokeObjectURL(url)
+    setError('تم تحميل tokens.json. استبدل public/tokens.json به وأعد البناء والنشر.')
   }
 
   return (
@@ -172,11 +176,16 @@ export default function TokenManager({ onBack }) {
                 </button>
               </div>
             )}
+            <div className="token-note">
+              الإضافة والحذف هنا يغيران الجهاز المحلي فقط.
+              <br />
+              لنشر رموز للعملاء: اضغط تحميل، ثم استبدل ملف public/tokens.json وأعد نشر الموقع.
+            </div>
             <button type="button" className="link-btn" onClick={onBack}>
               رجوع للدخول
             </button>
-            <button type="button" className="link-btn" onClick={handleExport}>
-              نسخ الرموز للنشر
+            <button type="button" className="link-btn publish-btn" onClick={handleDownload}>
+              تحميل tokens.json للنشر
             </button>
           </>
         )}

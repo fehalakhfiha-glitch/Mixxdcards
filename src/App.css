@@ -644,3 +644,24 @@
   color: #4D120B;
   white-space: nowrap;
 }
+
+.token-note {
+  color: #4D120B;
+  background-color: #FFFDF9;
+  border: 1.5px solid #D2C4A7;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.publish-btn {
+  background-color: #4D120B;
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px 16px;
+  text-decoration: none;
+  margin-top: 8px;
+}
