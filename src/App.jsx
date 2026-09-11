@@ -164,9 +164,11 @@ function App() {
       id = parseInt(id, 10)
       if (!id || id < 1 || id > TOTAL_CONVERSATIONS) return
       if (isTrial) {
-        if (id === 1 || id === 2) {
+        if (id > 2) {
           window.open(TRIAL_URL, '_blank')
+          return
         }
+        openConversation(id)
         return
       }
       openConversation(id)
@@ -175,12 +177,12 @@ function App() {
   )
 
   const previousConversation = useCallback(() => {
-    if (currentConversation > 1) openConversation(currentConversation - 1)
-  }, [currentConversation, openConversation])
+    if (currentConversation > 1) handleLessonSelect(currentConversation - 1)
+  }, [currentConversation, handleLessonSelect])
 
   const nextConversation = useCallback(() => {
-    if (currentConversation < TOTAL_CONVERSATIONS) openConversation(currentConversation + 1)
-  }, [currentConversation, openConversation])
+    if (currentConversation < TOTAL_CONVERSATIONS) handleLessonSelect(currentConversation + 1)
+  }, [currentConversation, handleLessonSelect])
 
   const showList = useCallback(() => {
     stopPlayback()
@@ -192,20 +194,15 @@ function App() {
 
   const goToCard = () => {
     const val = parseInt(jumpInput, 10)
-    if (isTrial) {
-      if (val !== 1 && val !== 2) {
-        setJumpError('من فضلك اكتب رقم صحيح من 1 إلى 2')
-        return
-      }
-      setJumpError('')
-      handleLessonSelect(val)
-      return
-    }
     if (!val || val < 1 || val > TOTAL_CONVERSATIONS) {
       setJumpError(`من فضلك اكتب رقم صحيح من 1 إلى ${TOTAL_CONVERSATIONS}`)
       return
     }
     setJumpError('')
+    if (isTrial) {
+      handleLessonSelect(val)
+      return
+    }
     openConversation(val)
   }
 
@@ -287,8 +284,8 @@ function App() {
               id="quickJumpInput"
               type="number"
               min="1"
-              max={isTrial ? 2 : TOTAL_CONVERSATIONS}
-              placeholder={isTrial ? 'اكتب رقم البطاقة (1-2)' : `اكتب رقم البطاقة (1-${TOTAL_CONVERSATIONS})`}
+              max={TOTAL_CONVERSATIONS}
+              placeholder={`اكتب رقم البطاقة (1-${TOTAL_CONVERSATIONS})`}
               value={jumpInput}
               onChange={(e) => setJumpInput(e.target.value)}
               onKeyDown={(e) => {
@@ -303,20 +300,16 @@ function App() {
             {jumpError}
           </div>
           <div className="card-grid" id="cardGrid">
-            {Array.from({ length: TOTAL_CONVERSATIONS }, (_, i) => i + 1).map((n) => {
-              const disabled = isTrial && n > 2
-              return (
-                <button
-                  key={n}
-                  type="button"
-                  className={`card-btn ${disabled ? 'disabled' : ''}`}
-                  onClick={() => handleLessonSelect(n)}
-                  disabled={disabled}
-                >
-                  {n}
-                </button>
-              )
-            })}
+            {Array.from({ length: TOTAL_CONVERSATIONS }, (_, i) => i + 1).map((n) => (
+              <button
+                key={n}
+                type="button"
+                className="card-btn"
+                onClick={() => handleLessonSelect(n)}
+              >
+                {n}
+              </button>
+            ))}
           </div>
         </div>
       )}
@@ -324,10 +317,25 @@ function App() {
       {view === 'conversation' && (
         <div id="conversationSection" className="visible">
           <div className="auth-bar">
-            <span className="auth-token">الرمز: {getCurrentToken()}</span>
-            <button type="button" className="auth-logout" onClick={handleLogout}>
-              خروج
-            </button>
+            {isTrial ? (
+              <>
+                <span className="auth-token">تجربة</span>
+                <button
+                  type="button"
+                  className="auth-logout"
+                  onClick={handleTrialBack}
+                >
+                  خروج من التجربة
+                </button>
+              </>
+            ) : (
+              <>
+                <span className="auth-token">الرمز: {getCurrentToken()}</span>
+                <button type="button" className="auth-logout" onClick={handleLogout}>
+                  خروج
+                </button>
+              </>
+            )}
           </div>
           <div className="card-container">
             <div className="badge-number" id="convBadge">
