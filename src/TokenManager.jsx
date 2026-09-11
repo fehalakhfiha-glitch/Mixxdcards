@@ -8,7 +8,7 @@ import {
 } from './auth'
 import { supabaseEnabled } from './supabaseClient'
 
-const MASTER_PASSWORD = 'admin'
+const MASTER_PASSWORD = 'admin@m!xd26'
 const TOKENS_PER_PAGE = 20
 
 export default function TokenManager({ onBack }) {
