@@ -357,3 +357,190 @@
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+/* =====================================================
+   شريط تسجيل الدخول والخروج
+   ===================================================== */
+
+.auth-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FFFDF9;
+  border: 1.5px solid #D2C4A7;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+}
+
+.auth-token {
+  font-size: 13px;
+  font-weight: 700;
+  color: #4D120B;
+  direction: ltr;
+}
+
+.auth-logout {
+  background-color: #4D120B;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.auth-logout:active {
+  transform: scale(0.95);
+}
+
+/* =====================================================
+   شاشة تسجيل الدخول وإدارة الرموز
+   ===================================================== */
+
+.auth-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.auth-box {
+  width: 100%;
+  max-width: 380px;
+  background-color: #FAF6EE;
+  border: 2px solid #D2C4A7;
+  border-radius: 16px;
+  padding: 28px 22px;
+  text-align: center;
+}
+
+.auth-box h1 {
+  color: #4D120B;
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.auth-hint {
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+.auth-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.auth-box input {
+  padding: 12px;
+  border: 2px solid #D2C4A7;
+  border-radius: 10px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 15px;
+  text-align: center;
+  outline: none;
+  background-color: #FFFDF9;
+}
+
+.auth-box input:focus {
+  border-color: #4D120B;
+}
+
+.auth-box button[type="submit"],
+.token-add-form button,
+.token-list button {
+  background-color: #4D120B;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.auth-box button[type="submit"]:active,
+.token-add-form button:active,
+.token-list button:active {
+  transform: scale(0.97);
+}
+
+.auth-error {
+  color: #B00020;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: #4D120B;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.token-add-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.token-add-form input {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.token-list {
+  list-style: none;
+  margin: 0 0 16px 0;
+  padding: 0;
+  max-height: 220px;
+  overflow-y: auto;
+  border: 1.5px solid #D2C4A7;
+  border-radius: 10px;
+  background-color: #FFFDF9;
+}
+
+.token-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  border-bottom: 1px solid #EBE4D5;
+}
+
+.token-list li:last-child {
+  border-bottom: none;
+}
+
+.token-list li.empty {
+  justify-content: center;
+  color: #999;
+}
+
+.token-list span {
+  font-weight: 700;
+  color: #4D120B;
+  direction: ltr;
+}
+
+.token-list button {
+  padding: 5px 12px;
+  font-size: 13px;
+  border-radius: 7px;
+}

@@ -1,5 +1,15 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import './App.css'
+import Login from './Login.jsx'
+import TokenManager from './TokenManager.jsx'
+import {
+  seedDefaultTokens,
+  isAuthenticated,
+  logout,
+  getCurrentToken,
+  touchSession,
+  subscribeToSessions,
+} from './auth.js'
 
 const TOTAL_CONVERSATIONS = 100
 
@@ -19,6 +29,8 @@ function PersonIcon() {
 }
 
 function App() {
+  const [authView, setAuthView] = useState('login')
+  const [isLoggedIn, setIsLoggedIn] = useState(() => isAuthenticated())
   const [view, setView] = useState('list')
   const [currentConversation, setCurrentConversation] = useState(1)
   const [data, setData] = useState(null)
@@ -37,6 +49,54 @@ function App() {
     setIsPlaying(false)
     setCurrentTrack(null)
   }, [])
+
+  const checkAuth = useCallback(() => {
+    if (isAuthenticated()) {
+      setIsLoggedIn(true)
+      setAuthView('login')
+    } else {
+      logout()
+      setIsLoggedIn(false)
+      setView('list')
+      stopPlayback()
+      setData(null)
+    }
+  }, [stopPlayback])
+
+  const handleLogin = useCallback(() => {
+    setIsLoggedIn(true)
+    setView('list')
+    setAuthView('login')
+  }, [])
+
+  const handleLogout = useCallback(() => {
+    logout()
+    setIsLoggedIn(false)
+    setView('list')
+    setData(null)
+    stopPlayback()
+  }, [stopPlayback])
+
+  useEffect(() => {
+    seedDefaultTokens()
+  }, [])
+
+  useEffect(() => {
+    return subscribeToSessions(() => {
+      checkAuth()
+    })
+  }, [checkAuth])
+
+  useEffect(() => {
+    if (!isLoggedIn) return
+    const interval = setInterval(() => {
+      touchSession()
+      if (!isAuthenticated()) {
+        handleLogout()
+      }
+    }, 30000)
+    return () => clearInterval(interval)
+  }, [isLoggedIn, handleLogout])
 
   const playAudio = useCallback(
     (fileName, trackId) => {
@@ -139,10 +199,29 @@ function App() {
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [view, previousConversation, nextConversation])
 
+  if (!isLoggedIn && authView === 'tokens') {
+    return <TokenManager onBack={() => setAuthView('login')} />
+  }
+
+  if (!isLoggedIn) {
+    return (
+      <Login
+        onLogin={handleLogin}
+        onManageTokens={() => setAuthView('tokens')}
+      />
+    )
+  }
+
   return (
     <>
       {view === 'list' && (
         <div id="conversationList">
+          <div className="auth-bar">
+            <span className="auth-token">الرمز: {getCurrentToken()}</span>
+            <button type="button" className="auth-logout" onClick={handleLogout}>
+              خروج
+            </button>
+          </div>
           <h1>اختر المحادثة</h1>
           <div className="search-bar">
             <input
@@ -181,6 +260,12 @@ function App() {
 
       {view === 'conversation' && (
         <div id="conversationSection" className="visible">
+          <div className="auth-bar">
+            <span className="auth-token">الرمز: {getCurrentToken()}</span>
+            <button type="button" className="auth-logout" onClick={handleLogout}>
+              خروج
+            </button>
+          </div>
           <div className="card-container">
             <div className="badge-number" id="convBadge">
               {currentConversation}
