@@ -1,5 +1,12 @@
 import { useState } from 'react'
-import { listTokens, addToken, removeToken, seedDefaultTokens } from './auth'
+import {
+  syncTokens,
+  listTokens,
+  addToken,
+  removeToken,
+  seedDefaultTokens,
+} from './auth'
+import { supabaseEnabled } from './supabaseClient'
 
 const MASTER_PASSWORD = 'admin'
 const TOKENS_PER_PAGE = 20
@@ -22,19 +29,20 @@ export default function TokenManager({ onBack }) {
     setPage(1)
   }
 
-  const checkPassword = (e) => {
+  const checkPassword = async (e) => {
     e.preventDefault()
     if (password === MASTER_PASSWORD) {
       setUnlocked(true)
       setError('')
       setPage(1)
+      await syncTokens()
       refresh()
     } else {
       setError('كلمة المرور الرئيسية غير صحيحة.')
     }
   }
 
-  const handleAdd = (e) => {
+  const handleAdd = async (e) => {
     e.preventDefault()
     const tokenTrim = newToken.trim()
     const mobileTrim = newMobile.trim()
@@ -43,13 +51,18 @@ export default function TokenManager({ onBack }) {
       setError('أدخل رقم الجوال لصاحب الرمز.')
       return
     }
-    if (addToken(tokenTrim, mobileTrim)) {
+    const result = await addToken(tokenTrim, mobileTrim)
+    if (result.ok) {
       setNewToken('')
       setNewMobile('')
       setError('')
       refresh()
+    } else if (result.reason === 'exists') {
+      setError('الرمز موجود مسبقاً.')
+    } else if (result.reason === 'supabase') {
+      setError('تعذر الحفظ في Supabase. تأكد من الإعدادات.')
     } else {
-      setError('الرمز فارغ أو موجود مسبقاً.')
+      setError('تعذر إضافة الرمز.')
     }
   }
 
@@ -71,17 +84,9 @@ export default function TokenManager({ onBack }) {
   const goPrev = () => setPage(Math.max(1, effectivePage - 1))
   const goNext = () => setPage(Math.min(totalPages, effectivePage + 1))
 
-  const handleDownload = () => {
-    const blob = new Blob([JSON.stringify(tokens, null, 2)], {
-      type: 'application/json',
-    })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = 'tokens.json'
-    a.click()
-    URL.revokeObjectURL(url)
-    setError('تم تحميل tokens.json. استبدل public/tokens.json به وأعد البناء والنشر.')
+  const handleRemove = async (token) => {
+    await removeToken(token)
+    refresh()
   }
 
   return (
@@ -145,10 +150,7 @@ export default function TokenManager({ onBack }) {
                   </div>
                   <button
                     type="button"
-                    onClick={() => {
-                      removeToken(t.token)
-                      refresh()
-                    }}
+                    onClick={() => handleRemove(t.token)}
                   >
                     حذف
                   </button>
@@ -177,15 +179,12 @@ export default function TokenManager({ onBack }) {
               </div>
             )}
             <div className="token-note">
-              الإضافة والحذف هنا يغيران الجهاز المحلي فقط.
-              <br />
-              لنشر رموز للعملاء: اضغط تحميل، ثم استبدل ملف public/tokens.json وأعد نشر الموقع.
+              {supabaseEnabled
+                ? 'الرموز تُحفظ في Supabase وتعمل في كل المتصفحات.'
+                : 'Supabase غير مفعل. أضف VITE_SUPABASE_URL و VITE_SUPABASE_ANON_KEY في ملف .env ثم أنشئ جدول tokens.'}
             </div>
             <button type="button" className="link-btn" onClick={onBack}>
               رجوع للدخول
-            </button>
-            <button type="button" className="link-btn publish-btn" onClick={handleDownload}>
-              تحميل tokens.json للنشر
             </button>
           </>
         )}

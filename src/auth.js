@@ -1,3 +1,5 @@
+import { supabase, supabaseEnabled } from './supabaseClient.js'
+
 const TOKENS_KEY = 'mixxd_tokens'
 const SESSIONS_KEY = 'mixxd_sessions'
 const SESSION_ID_KEY = 'mixxd_session_id'
@@ -56,6 +58,21 @@ function cleanupSessions() {
   return sessions
 }
 
+export async function syncTokens() {
+  if (!supabaseEnabled) return
+  try {
+    const { data, error } = await supabase
+      .from('tokens')
+      .select('token, mobile')
+      .order('id')
+    if (error) throw error
+    const tokens = (data || []).map(normalizeToken)
+    writeTokens(tokens)
+  } catch (err) {
+    console.error('Supabase sync failed:', err)
+  }
+}
+
 export function seedDefaultTokens() {
   const tokens = readTokens()
   if (tokens.length === 0) {
@@ -63,34 +80,35 @@ export function seedDefaultTokens() {
   }
 }
 
-export async function syncTokens() {
-  try {
-    const response = await fetch('/tokens.json')
-    if (!response.ok) return
-    const remote = await response.json()
-    if (Array.isArray(remote) && remote.length > 0) {
-      writeTokens(remote.map(normalizeToken))
-    }
-  } catch {
-    // keep existing localStorage tokens if fetch fails
-  }
-}
-
 export function listTokens() {
   return readTokens()
 }
 
-export function addToken(token, mobile) {
-  const tokens = readTokens()
+export async function addToken(token, mobile) {
   const tokenTrim = String(token).trim()
   const mobileTrim = String(mobile).trim()
-  if (!tokenTrim || tokens.some((t) => t.token === tokenTrim)) return false
-  tokens.push({ token: tokenTrim, mobile: mobileTrim })
+  if (!tokenTrim) return { ok: false, reason: 'empty' }
+  const tokens = readTokens()
+  if (tokens.some((t) => t.token === tokenTrim)) return { ok: false, reason: 'exists' }
+
+  const newToken = { token: tokenTrim, mobile: mobileTrim }
+
+  if (supabaseEnabled) {
+    try {
+      const { error } = await supabase.from('tokens').insert(newToken)
+      if (error) throw error
+    } catch (err) {
+      console.error('Supabase add failed:', err)
+      return { ok: false, reason: 'supabase' }
+    }
+  }
+
+  tokens.push(newToken)
   writeTokens(tokens)
-  return true
+  return { ok: true }
 }
 
-export function removeToken(token) {
+export async function removeToken(token) {
   const tokenValue = typeof token === 'string' ? token : token?.token
   const tokens = readTokens().filter((t) => t.token !== tokenValue)
   writeTokens(tokens)
@@ -98,6 +116,13 @@ export function removeToken(token) {
   if (sessions[tokenValue]) {
     delete sessions[tokenValue]
     writeSessions(sessions)
+  }
+  if (supabaseEnabled) {
+    try {
+      await supabase.from('tokens').delete().eq('token', tokenValue)
+    } catch (err) {
+      console.error('Supabase remove failed:', err)
+    }
   }
 }
 
