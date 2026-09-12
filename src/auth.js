@@ -162,7 +162,7 @@ export async function login(token) {
   } else {
     const sessions = readSessions()
     const existing = sessions[trimmed]
-    const currentSessionId = sessionStorage.getItem(SESSION_ID_KEY)
+    const currentSessionId = localStorage.getItem(SESSION_ID_KEY)
     const now = Date.now()
     if (existing && existing.sessionId !== currentSessionId && now - existing.lastSeen < SESSION_ACTIVE_MS) {
       return { ok: false, reason: 'in-use' }
@@ -171,16 +171,16 @@ export async function login(token) {
     writeSessions(sessions)
   }
 
-  sessionStorage.setItem(SESSION_ID_KEY, sessionId)
-  sessionStorage.setItem(CURRENT_TOKEN_KEY, trimmed)
+  localStorage.setItem(SESSION_ID_KEY, sessionId)
+  localStorage.setItem(CURRENT_TOKEN_KEY, trimmed)
   notifyAuthChange()
 
   return { ok: true, sessionId }
 }
 
 export async function logout() {
-  const token = sessionStorage.getItem(CURRENT_TOKEN_KEY)
-  const sessionId = sessionStorage.getItem(SESSION_ID_KEY)
+  const token = localStorage.getItem(CURRENT_TOKEN_KEY)
+  const sessionId = localStorage.getItem(SESSION_ID_KEY)
   if (token) {
     const sessions = readSessions()
     if (sessions[token]?.sessionId === sessionId) {
@@ -195,27 +195,27 @@ export async function logout() {
       }
     }
   }
-  sessionStorage.removeItem(SESSION_ID_KEY)
-  sessionStorage.removeItem(CURRENT_TOKEN_KEY)
+  localStorage.removeItem(SESSION_ID_KEY)
+  localStorage.removeItem(CURRENT_TOKEN_KEY)
   notifyAuthChange()
 }
 
 export function getCurrentToken() {
-  return sessionStorage.getItem(CURRENT_TOKEN_KEY)
+  return localStorage.getItem(CURRENT_TOKEN_KEY)
 }
 
 export function isAuthenticated() {
   cleanupSessions()
-  const token = sessionStorage.getItem(CURRENT_TOKEN_KEY)
-  const sessionId = sessionStorage.getItem(SESSION_ID_KEY)
+  const token = localStorage.getItem(CURRENT_TOKEN_KEY)
+  const sessionId = localStorage.getItem(SESSION_ID_KEY)
   if (!token || !sessionId) return false
   const sessions = readSessions()
   return sessions[token]?.sessionId === sessionId
 }
 
 export async function touchSession() {
-  const token = sessionStorage.getItem(CURRENT_TOKEN_KEY)
-  const sessionId = sessionStorage.getItem(SESSION_ID_KEY)
+  const token = localStorage.getItem(CURRENT_TOKEN_KEY)
+  const sessionId = localStorage.getItem(SESSION_ID_KEY)
   if (!token || !sessionId) return
 
   if (supabaseEnabled) {
@@ -226,7 +226,13 @@ export async function touchSession() {
         .select('session_id, last_seen')
         .eq('token', token)
         .single()
-      if (error) throw error
+      if (error) {
+        if (error.code === 'PGRST116') {
+          await logout()
+          return
+        }
+        throw error
+      }
       if (data && data.session_id === sessionId && now - Number(data.last_seen) < SESSION_TTL_MS) {
         await supabase.from('sessions').update({ last_seen: now }).eq('token', token)
         const sessions = readSessions()

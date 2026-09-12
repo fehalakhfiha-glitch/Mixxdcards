@@ -112,13 +112,15 @@ function App() {
 
   useEffect(() => {
     if (!isLoggedIn) return
-    const interval = setInterval(() => {
+    const run = () => {
       touchSession().then(() => {
         if (!isAuthenticated()) {
           handleLogout()
         }
       })
-    }, 30000)
+    }
+    run()
+    const interval = setInterval(run, 30000)
     return () => clearInterval(interval)
   }, [isLoggedIn, handleLogout])
 
