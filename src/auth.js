@@ -6,6 +6,7 @@ const SESSION_ID_KEY = 'mixxd_session_id'
 const CURRENT_TOKEN_KEY = 'mixxd_current_token'
 
 const SESSION_TTL_MS = 2 * 60 * 60 * 1000
+const SESSION_ACTIVE_MS = 120 * 1000
 
 function generateSessionId() {
   return `${Date.now()}-${Math.random().toString(36).slice(2)}`
@@ -144,13 +145,16 @@ export async function login(token) {
         .eq('token', trimmed)
         .single()
       if (error && error.code !== 'PGRST116') throw error
-      if (data && now - data.last_seen < SESSION_TTL_MS) {
+      if (data && now - Number(data.last_seen) < SESSION_ACTIVE_MS) {
         return { ok: false, reason: 'in-use' }
       }
       const { error: upsertError } = await supabase
         .from('sessions')
         .upsert({ token: trimmed, session_id: sessionId, last_seen: now }, { onConflict: 'token' })
       if (upsertError) throw upsertError
+      const sessions = readSessions()
+      sessions[trimmed] = { sessionId, lastSeen: now }
+      writeSessions(sessions)
     } catch (err) {
       console.error('Supabase login failed:', err)
       return { ok: false, reason: 'supabase' }
@@ -159,10 +163,11 @@ export async function login(token) {
     const sessions = readSessions()
     const existing = sessions[trimmed]
     const currentSessionId = sessionStorage.getItem(SESSION_ID_KEY)
-    if (existing && existing.sessionId !== currentSessionId) {
+    const now = Date.now()
+    if (existing && existing.sessionId !== currentSessionId && now - existing.lastSeen < SESSION_ACTIVE_MS) {
       return { ok: false, reason: 'in-use' }
     }
-    sessions[trimmed] = { sessionId, lastSeen: Date.now() }
+    sessions[trimmed] = { sessionId, lastSeen: now }
     writeSessions(sessions)
   }
 
@@ -222,7 +227,7 @@ export async function touchSession() {
         .eq('token', token)
         .single()
       if (error) throw error
-      if (data && data.session_id === sessionId && now - data.last_seen < SESSION_TTL_MS) {
+      if (data && data.session_id === sessionId && now - Number(data.last_seen) < SESSION_TTL_MS) {
         await supabase.from('sessions').update({ last_seen: now }).eq('token', token)
         const sessions = readSessions()
         sessions[token] = { sessionId, lastSeen: now }
