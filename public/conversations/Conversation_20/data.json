@@ -1,0 +1,30 @@
+{
+  "id": 20,
+  "title": "محادثة 20- الفهم والتوضيح",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Do you understand this lesson?",
+      "ar": "هل تفهم هذا الدرس؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Not really.",
+      "ar": "ليس تمامًا."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Let me explain it again.",
+      "ar": "دعني أشرحه مرة أخرى."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Thank you.",
+      "ar": "شكرًا."
+    }
+  ]
+}

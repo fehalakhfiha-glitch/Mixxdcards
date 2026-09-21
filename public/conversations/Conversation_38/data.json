@@ -1,0 +1,30 @@
+{
+  "id": 38,
+  "title": "محادثة 38- فقدان شيء",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I lost my bag.",
+      "ar": "لقد فقدت حقيبتي."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Where did you lose it?",
+      "ar": "أين فقدتها؟"
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "At the station.",
+      "ar": "في المحطة."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "You should ask there.",
+      "ar": "يجب أن تسأل هناك."
+    }
+  ]
+}

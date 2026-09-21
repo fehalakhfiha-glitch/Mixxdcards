@@ -1,0 +1,30 @@
+{
+  "id": 17,
+  "title": "محادثة 17 - السؤال عن العمر",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "How old are you?",
+      "ar": "كم عمرك؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I'm 20 years old.",
+      "ar": "عمري 20 سنة."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "And you?",
+      "ar": "وأنت؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I'm 19.",
+      "ar": "عمري 19."
+    }
+  ]
+}

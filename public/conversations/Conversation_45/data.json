@@ -1,0 +1,30 @@
+{
+  "id": 45,
+  "title": "محادثة 45- طلب مساعدة عاجلة",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Excuse me, I need help.",
+      "ar": "عذرًا، أحتاج مساعدة."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "What's wrong?",
+      "ar": "ما المشكلة؟"
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I can't find my phone.",
+      "ar": "لا أستطيع العثور على هاتفي."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Let's look for it together.",
+      "ar": "دعنا نبحث عنه معًا."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": 18,
+  "title": "محادثة 18 - في العمل",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Are you new here?",
+      "ar": "هل أنت جديد هنا؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, it's my first day.",
+      "ar": "نعم، إنه أول يوم لي."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "What do you do.",
+      "ar": "ماذا تعمل؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I work in sales.",
+      "ar": "أعمل في المبيعات."
+    }
+  ]
+}

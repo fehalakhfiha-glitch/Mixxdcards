@@ -1,0 +1,30 @@
+{
+  "id": 44,
+  "title": "محادثة 44- إرجاع/استبدال",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I want to return this shirt.",
+      "ar": "أريد إرجاع هذا القميص."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "What's the problem?",
+      "ar": "ما المشكلة؟"
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "It's too small.",
+      "ar": "إنه صغير جدًا."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "You can exchange it.",
+      "ar": "يمكنك استبداله."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": 36,
+  "title": "محادثة 36- السؤال عن الألوان",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Do you have this in black?",
+      "ar": "هل لديكم هذا باللون الأسود؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, we do.",
+      "ar": "نعم، لدينا."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I prefer black.",
+      "ar": "أفضل الأسود."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Good choice.",
+      "ar": "اختيار جيد."
+    }
+  ]
+}

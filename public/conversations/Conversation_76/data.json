@@ -1,0 +1,30 @@
+{
+  "id": 76,
+  "title": "محادثة 76 – نسيان شيء",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I forgot my keys.",
+      "ar": "نسيت مفاتيحي."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Where did you leave them?",
+      "ar": "أين تركتها؟"
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "At home.",
+      "ar": "في المنزل."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "You need to go back.",
+      "ar": "يجب أن تعود."
+    }
+  ]
+}

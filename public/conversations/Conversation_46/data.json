@@ -1,0 +1,30 @@
+{
+  "id": 46,
+  "title": "محادثة 46- في المستشفى",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I don't feel well.",
+      "ar": "لا أشعر أني بخير."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "What's wrong?",
+      "ar": "ما المشكلة؟"
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I have a fever.",
+      "ar": "لدي حرارة."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "You should see a doctor.",
+      "ar": "يجب أن ترى طبيبًا."
+    }
+  ]
+}

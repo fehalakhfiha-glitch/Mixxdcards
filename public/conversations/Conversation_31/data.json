@@ -1,0 +1,30 @@
+{
+  "id": 31,
+  "title": "محادثة 31- تسجيل الدخول",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Hello, I have a flight to Dubai.",
+      "ar": "مرحبًا، لدي رحلة إلى دبي."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Can I see your passport?",
+      "ar": "هل يمكنني رؤية جواز سفرك؟"
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Sure, here you are.",
+      "ar": "بالتأكيد، تفضل."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Thank you. Here is your boarding pass.",
+      "ar": "شكرًا. هذا بطاقة الصعود."
+    }
+  ]
+}

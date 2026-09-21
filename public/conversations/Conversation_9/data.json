@@ -1,0 +1,30 @@
+{
+  "id": 9,
+  "title": "محادثة 9- السؤال عن المكان",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Excuse me, where is the bank?",
+      "ar": "عذرًا، أين البنك؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "It's next to the supermarket.",
+      "ar": "إنه بجانب السوبرماركت."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Thank you!",
+      "ar": "شكرًا!"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "You're welcome!",
+      "ar": "على الرحب والسعة!"
+    }
+  ]
+}

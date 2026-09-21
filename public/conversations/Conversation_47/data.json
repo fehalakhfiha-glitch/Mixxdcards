@@ -1,0 +1,30 @@
+{
+  "id": 47,
+  "title": "محادثة 47- السؤال عن أيام الأسبوع",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "What day is it today?",
+      "ar": "ما اليوم؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "It's Monday.",
+      "ar": "اليوم الاثنين."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I have work today.",
+      "ar": "لدي عمل اليوم."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Good luck.",
+      "ar": "بالتوفيق."
+    }
+  ]
+}

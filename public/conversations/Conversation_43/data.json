@@ -1,0 +1,30 @@
+{
+  "id": 43,
+  "title": "محادثة 43- تفاصيل الطلب",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Can I have a burger and a drink?",
+      "ar": "هل يمكنني الحصول على برقر ومشروب؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "What would you like to drink?",
+      "ar": "ماذا تريد أن تشرب؟"
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Orange juice, please.",
+      "ar": "عصير برتقال، من فضلك."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Anything else?",
+      "ar": "هل تريد شيئًا آخر؟"
+    }
+  ]
+}

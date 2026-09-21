@@ -1,0 +1,30 @@
+{
+  "id": 91,
+  "title": "محادثة 91 – التعبير عن الرغبة",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I want to learn English faster.",
+      "ar": "أريد تعلم الإنجليزية بشكل أسرع."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "You should practice every day",
+      "ar": "يجب أن تتدرب كل يوم."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "That’s true",
+      "ar": "هذا صحيح."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Practice makes progress.",
+      "ar": "الممارسة تُحقق التقدم."
+    }
+  ]
+}

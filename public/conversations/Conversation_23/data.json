@@ -1,0 +1,30 @@
+{
+  "id": 23,
+  "title": "محادثة 23- الشكوى",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "My phone is not working.",
+      "ar": "هاتفي لا يعمل."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "What's wrong?",
+      "ar": "ما المشكلة؟"
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "The screen is broken.",
+      "ar": "الشاشة مكسورة."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "You should fix it.",
+      "ar": "يجب أن تصلحه."
+    }
+  ]
+}

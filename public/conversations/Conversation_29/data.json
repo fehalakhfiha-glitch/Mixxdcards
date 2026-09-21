@@ -1,0 +1,30 @@
+{
+  "id": 29,
+  "title": "محادثة 29- إعطاء تعليمات",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "How do I get to the station?",
+      "ar": "كيف أصل إلى المحطة؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Go straight and turn right.",
+      "ar": "امش مباشرة ثم انعطف يمينًا."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Thank you.",
+      "ar": "شكرًا."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "You're welcome.",
+      "ar": "على الرحب والسعة."
+    }
+  ]
+}

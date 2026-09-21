@@ -1,0 +1,30 @@
+{
+  "id": 6,
+  "title": "محادثة 6- التحدث عن الغد",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "What are you going to do tomorrow?",
+      "ar": "ماذا ستفعل غدًا؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I'm going to visit my friend.",
+      "ar": "سأزور صديقي."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "That sounds nice!",
+      "ar": "يبدو جميلًا!"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, I'm excited.",
+      "ar": "نعم، أنا متحمس."
+    }
+  ]
+}

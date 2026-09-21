@@ -1,0 +1,30 @@
+{
+  "id": 89,
+  "title": "محادثة 89 – السؤال عن العمل",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Where do you work?",
+      "ar": "أين تعمل؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I work in a hospital.",
+      "ar": "أعمل في مستشفى."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Do you like your job?",
+      "ar": "هل تحب عملك؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, very much.",
+      "ar": "نعم، كثيرًا."
+    }
+  ]
+}

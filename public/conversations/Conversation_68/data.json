@@ -1,0 +1,30 @@
+{
+  "id": 68,
+  "title": "محادثة 68 – في البنك",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I want to open an account.",
+      "ar": "أريد فتح حساب."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Please fill out this form.",
+      "ar": "يرجى تعبئة هذا النموذج."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Okay.",
+      "ar": "حسنًا."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Let me know if you need any help",
+      "ar": "أخبرني إذا كنت بحاجة إلى أي مساعدة."
+    }
+  ]
+}

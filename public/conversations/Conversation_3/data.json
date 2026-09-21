@@ -1,0 +1,30 @@
+{
+  "id": 3,
+  "title": "محادثة 3- الروتين اليومي",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "What do you do every day?",
+      "ar": "ماذا تفعل كل يوم؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I wake up early and go to school.",
+      "ar": "أستيقظ مبكرًا وأذهب إلى المدرسة."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Do you like your routine?",
+      "ar": "هل تحب روتينك؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, I do.",
+      "ar": "نعم."
+    }
+  ]
+}

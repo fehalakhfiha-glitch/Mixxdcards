@@ -1,0 +1,30 @@
+{
+  "id": 55,
+  "title": "محادثة 55 – الاتفاق",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Let's meet at 5.",
+      "ar": "لنلتق الساعة 5."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Okay, see you then.",
+      "ar": "حسنًا، أراك حينها."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Don’t be late.",
+      "ar": "لا تتأخر."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "I won’t be late.",
+      "ar": "لن أتأخر."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": 77,
+  "title": "محادثة 77 - في المصعد",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Which floor?",
+      "ar": "أي طابق؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "The third floor, please.",
+      "ar": "الطابق الثالث، من فضلك."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Here you go.",
+      "ar": "تفضل."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Thank you.",
+      "ar": "شكرًا."
+    }
+  ]
+}

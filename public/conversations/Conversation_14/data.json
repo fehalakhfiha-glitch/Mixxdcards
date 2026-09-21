@@ -1,0 +1,30 @@
+{
+  "id": 14,
+  "title": "محادثة 14- طلب إذن",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Can I use your phone?",
+      "ar": "هل يمكنني استخدام هاتفك؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, why?",
+      "ar": "نعم، لماذا؟"
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I need to call my friend.",
+      "ar": "أحتاج أن أتصل بصديقي."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Okay, go ahead.",
+      "ar": "حسنًا، تفضل."
+    }
+  ]
+}

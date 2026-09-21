@@ -1,0 +1,30 @@
+{
+  "id": 54,
+  "title": "محادثة 54– الطقس",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Is it cold outside?",
+      "ar": "هل الجو بارد في الخارج؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, it's very cold.",
+      "ar": "نعم، بارد جدًا."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I will wear a jacket.",
+      "ar": "سأرتدي سترة."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yeah, you should.",
+      "ar": "نعم، يجب عليك ذلك."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": 83,
+  "title": "محادثة 83 – التحدث عن العادة",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Do you drink coffee every day?",
+      "ar": "هل تشرب القهوة كل يوم؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, I do.",
+      "ar": "نعم."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "How many cups?",
+      "ar": "كم كوبًا؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Two cups.",
+      "ar": "كوبان."
+    }
+  ]
+}

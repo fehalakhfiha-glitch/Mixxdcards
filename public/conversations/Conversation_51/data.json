@@ -1,0 +1,30 @@
+{
+  "id": 51,
+  "title": "محادثة 51- الدعوة",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Do you want to come with me?",
+      "ar": "هل تريد أن تأتي معي؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Where?",
+      "ar": "أين؟"
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "To the park.",
+      "ar": "إلى الحديقة."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Sure, let's go.",
+      "ar": "بالتأكيد، هيا بنا."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": 69,
+  "title": "محادثة 69 - في الجيم",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "How often do you exercise?",
+      "ar": "كم مرة تتمرن؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Three times a week.",
+      "ar": "ثلاث مرات في الأسبوع."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "That's good.",
+      "ar": "هذا جيد."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Yes, I like it.",
+      "ar": "نعم، يعجبني ذلك."
+    }
+  ]
+}

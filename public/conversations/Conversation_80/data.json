@@ -1,0 +1,30 @@
+{
+  "id": 80,
+  "title": "محادثة 80 – التعبير عن الملل",
+  "dialogue": [
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "I'm bored.",
+      "ar": "أنا أشعر بالملل."
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Let's do something fun.",
+      "ar": "لنفعل شيئًا ممتعًا."
+    },
+    {
+      "speaker": "A",
+      "gender": "male",
+      "en": "Like what?",
+      "ar": "مثل ماذا؟"
+    },
+    {
+      "speaker": "B",
+      "gender": "female",
+      "en": "Let's watch a movie.",
+      "ar": "لنشاهد فيلمًا."
+    }
+  ]
+}
