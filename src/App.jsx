@@ -95,6 +95,7 @@ function App() {
   }, [])
 
   const checkAuth = useCallback(() => {
+    if (isTrial) return
     if (isAuthenticated()) {
       setIsLoggedIn(true)
       setAuthView('login')
@@ -105,7 +106,7 @@ function App() {
       stopPlayback()
       setData(null)
     }
-  }, [stopPlayback])
+  }, [stopPlayback, isTrial])
 
   const handleLogin = useCallback(() => {
     setIsLoggedIn(true)
@@ -171,7 +172,7 @@ function App() {
       }
       stopPlayback()
       const player = playerRef.current
-      const src = `/conversations/Conversation_${currentConversation}/${fileName}`
+      const src = `conversations/Conversation_${currentConversation}/${fileName}`
       setCurrentTrack(trackId)
       setIsPlaying(true)
       player.src = src
@@ -194,7 +195,7 @@ function App() {
       setError('')
       window.scrollTo(0, 0)
       try {
-        const response = await fetch(`/conversations/Conversation_${id}/data.json`)
+        const response = await fetch(`conversations/Conversation_${id}/data.json`)
         if (!response.ok) throw new Error('File not found')
         const json = await response.json()
         setData(json)
