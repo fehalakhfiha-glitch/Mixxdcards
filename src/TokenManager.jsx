@@ -66,6 +66,16 @@ export default function TokenManager({ onBack }) {
     }
   }
 
+  const generateToken = () => {
+    const existing = new Set(tokens.map((t) => t.token))
+    let code
+    do {
+      code = String(Math.floor(1000 + Math.random() * 9000))
+    } while (existing.has(code))
+    setNewToken(code)
+    setError('')
+  }
+
   const handleSearch = (e) => {
     setSearch(e.target.value)
     setPage(1)
@@ -118,6 +128,14 @@ export default function TokenManager({ onBack }) {
                 placeholder="رمز جديد"
                 dir="ltr"
               />
+              <button
+                type="button"
+                className="token-gen-btn"
+                onClick={generateToken}
+                title="توليد رمز عشوائي من 4 أرقام"
+              >
+                توليد
+              </button>
               <input
                 type="tel"
                 value={newMobile}

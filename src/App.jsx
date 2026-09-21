@@ -15,7 +15,46 @@ import {
 
 const TOTAL_CONVERSATIONS = 100
 const TRIAL_URL =
-  'https://mixxd.net/%D8%A8%D8%B7%D8%A7%D9%82%D8%A7%D8%AA-%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%A5%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A%D8%A9-%D9%84%D9%84%D9%85%D8%A8%D8%AA%D8%AF%D8%A6%D9%8A%D9%86-%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89-%D8%A7%D9%84%D8%A3%D9%88%D9%84/p432595306'
+  'https://mixxd.net/%D8%A8%D8%B7%D8%A7%D9%82%D8%A7%D8%AA-%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%A7%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A%D8%A9-%D8%B1%D9%82%D9%85%D9%8A%D8%A9-100-%D9%85%D8%AD%D8%A7%D8%AF%D8%AB%D8%A9-%D8%A3%D8%B3%D8%A7%D8%B3%D9%8A%D8%A9/p116418509'
+
+function AuthMenu({ label, actionLabel, onAction }) {
+  const [open, setOpen] = useState(false)
+  const menuRef = useRef(null)
+
+  useEffect(() => {
+    if (!open) return
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) setOpen(false)
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [open])
+
+  return (
+    <div className="auth-menu" ref={menuRef}>
+      <button
+        type="button"
+        className="auth-menu-btn"
+        aria-label="القائمة"
+        onClick={() => setOpen((v) => !v)}
+      >
+        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+          <circle cx="12" cy="5" r="2" />
+          <circle cx="12" cy="12" r="2" />
+          <circle cx="12" cy="19" r="2" />
+        </svg>
+      </button>
+      {open && (
+        <div className="auth-dropdown">
+          <span className="auth-token">{label}</span>
+          <button type="button" className="auth-logout" onClick={onAction}>
+            {actionLabel}
+          </button>
+        </div>
+      )}
+    </div>
+  )
+}
 
 function PersonIcon() {
   return (
@@ -266,23 +305,17 @@ function App() {
         <div id="conversationList">
           <div className="auth-bar">
             {isTrial ? (
-              <>
-                <span className="auth-token">تجربة</span>
-                <button
-                  type="button"
-                  className="auth-logout"
-                  onClick={handleTrialBack}
-                >
-                  خروج من التجربة
-                </button>
-              </>
+              <AuthMenu
+                label="تجربة"
+                actionLabel="خروج من التجربة"
+                onAction={handleTrialBack}
+              />
             ) : (
-              <>
-                <span className="auth-token">الرمز: {getCurrentToken()}</span>
-                <button type="button" className="auth-logout" onClick={handleLogout}>
-                  خروج
-                </button>
-              </>
+              <AuthMenu
+                label={`الرمز: ${getCurrentToken()}`}
+                actionLabel="خروج"
+                onAction={handleLogout}
+              />
             )}
           </div>
           <h1>اختر المحادثة</h1>
@@ -325,23 +358,17 @@ function App() {
         <div id="conversationSection" className="visible">
           <div className="auth-bar">
             {isTrial ? (
-              <>
-                <span className="auth-token">تجربة</span>
-                <button
-                  type="button"
-                  className="auth-logout"
-                  onClick={handleTrialBack}
-                >
-                  خروج من التجربة
-                </button>
-              </>
+              <AuthMenu
+                label="تجربة"
+                actionLabel="خروج من التجربة"
+                onAction={handleTrialBack}
+              />
             ) : (
-              <>
-                <span className="auth-token">الرمز: {getCurrentToken()}</span>
-                <button type="button" className="auth-logout" onClick={handleLogout}>
-                  خروج
-                </button>
-              </>
+              <AuthMenu
+                label={`الرمز: ${getCurrentToken()}`}
+                actionLabel="خروج"
+                onAction={handleLogout}
+              />
             )}
           </div>
           <div className="card-container">

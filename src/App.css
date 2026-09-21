@@ -413,6 +413,49 @@
   transform: scale(0.95);
 }
 
+.auth-menu {
+  position: relative;
+  margin-right: auto;
+}
+
+.auth-menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  padding: 6px;
+  color: #4D120B;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.auth-menu-btn:hover {
+  background-color: #F1EBDD;
+}
+
+.auth-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  min-width: 150px;
+  padding: 10px;
+  background-color: #FFFDF9;
+  border: 1.5px solid #D2C4A7;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+  z-index: 60;
+}
+
+.auth-dropdown .auth-token {
+  text-align: center;
+}
+
 /* =====================================================
    شاشة تسجيل الدخول وإدارة الرموز
    ===================================================== */
@@ -564,6 +607,16 @@
 .token-add-form input {
   flex: 1 1 120px;
   min-width: 0;
+}
+
+.token-add-form .token-gen-btn {
+  background-color: #F1EBDD;
+  color: #4D120B;
+  border: 2px solid #D2C4A7;
+}
+
+.token-add-form .token-gen-btn:hover {
+  background-color: #E6DCC4;
 }
 
 .token-list {
