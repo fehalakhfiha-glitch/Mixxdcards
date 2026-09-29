@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   syncTokens,
   listTokens,
@@ -28,6 +28,17 @@ export default function TokenManager({ onBack }) {
     setTokens(listTokens())
     setPage(1)
   }
+
+  useEffect(() => {
+    if (!unlocked) return
+    const pull = async () => {
+      await syncTokens()
+      setTokens(listTokens())
+    }
+    pull()
+    const interval = setInterval(pull, 10000)
+    return () => clearInterval(interval)
+  }, [unlocked])
 
   const checkPassword = async (e) => {
     e.preventDefault()
