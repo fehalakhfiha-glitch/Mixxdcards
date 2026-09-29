@@ -5,7 +5,7 @@ const SESSIONS_KEY = 'mixxd_sessions'
 const SESSION_ID_KEY = 'mixxd_session_id'
 const CURRENT_TOKEN_KEY = 'mixxd_current_token'
 
-const SESSION_TTL_MS = 2 * 60 * 60 * 1000
+const SESSION_TTL_MS = 365 * 24 * 60 * 60 * 1000
 const SESSION_ACTIVE_MS = 120 * 1000
 
 function generateSessionId() {
@@ -89,21 +89,33 @@ export async function addToken(token, mobile) {
   const tokenTrim = String(token).trim()
   const mobileTrim = String(mobile).trim()
   if (!tokenTrim) return { ok: false, reason: 'empty' }
-  const tokens = readTokens()
-  if (tokens.some((t) => t.token === tokenTrim)) return { ok: false, reason: 'exists' }
 
   const newToken = { token: tokenTrim, mobile: mobileTrim }
 
   if (supabaseEnabled) {
     try {
+      const { data: existing, error: checkError } = await supabase
+        .from('tokens')
+        .select('token')
+        .eq('token', tokenTrim)
+        .maybeSingle()
+      if (checkError) throw checkError
+      if (existing) return { ok: false, reason: 'exists' }
       const { error } = await supabase.from('tokens').insert(newToken)
-      if (error) throw error
+      if (error) {
+        if (error.code === '23505') return { ok: false, reason: 'exists' }
+        throw error
+      }
+      await syncTokens()
+      return { ok: true }
     } catch (err) {
       console.error('Supabase add failed:', err)
       return { ok: false, reason: 'supabase' }
     }
   }
 
+  const tokens = readTokens()
+  if (tokens.some((t) => t.token === tokenTrim)) return { ok: false, reason: 'exists' }
   tokens.unshift(newToken)
   writeTokens(tokens)
   return { ok: true }
@@ -122,6 +134,7 @@ export async function removeToken(token) {
     try {
       await supabase.from('tokens').delete().eq('token', tokenValue)
       await supabase.from('sessions').delete().eq('token', tokenValue)
+      await syncTokens()
     } catch (err) {
       console.error('Supabase remove failed:', err)
     }
@@ -131,13 +144,18 @@ export async function removeToken(token) {
 export async function login(token) {
   cleanupSessions()
   const trimmed = String(token).trim()
-  const tokens = readTokens()
-  if (!tokens.some((t) => t.token === trimmed)) return { ok: false, reason: 'invalid' }
-
   const sessionId = generateSessionId()
 
   if (supabaseEnabled) {
     try {
+      const { data: tokenRow, error: tokenError } = await supabase
+        .from('tokens')
+        .select('token')
+        .eq('token', trimmed)
+        .maybeSingle()
+      if (tokenError) throw tokenError
+      if (!tokenRow) return { ok: false, reason: 'invalid' }
+
       const now = Date.now()
       const { data, error } = await supabase
         .from('sessions')
@@ -160,6 +178,8 @@ export async function login(token) {
       return { ok: false, reason: 'supabase' }
     }
   } else {
+    const tokens = readTokens()
+    if (!tokens.some((t) => t.token === trimmed)) return { ok: false, reason: 'invalid' }
     const sessions = readSessions()
     const existing = sessions[trimmed]
     const currentSessionId = localStorage.getItem(SESSION_ID_KEY)
