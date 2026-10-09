@@ -1,21 +1,14 @@
-import { useState, useEffect } from 'react'
-import {
-  syncTokens,
-  listTokens,
-  addToken,
-  removeToken,
-  seedDefaultTokens,
-} from './auth'
+import { useState, useEffect, useRef, useCallback } from 'react'
+import { fetchTokens, addToken, removeToken, seedDefaultTokens, verifyAdmin } from './auth'
 import { supabaseEnabled } from './supabaseClient'
 
-const MASTER_PASSWORD = 'admin@m!xd26'
 const TOKENS_PER_PAGE = 20
+const LOAD_ERROR = 'تعذر تحميل الرموز من Supabase. تأكد من الاتصال.'
+const PASSWORD_ERROR = 'كلمة المرور الرئيسية غير صحيحة.'
 
 export default function TokenManager({ onBack }) {
-  const [tokens, setTokens] = useState(() => {
-    seedDefaultTokens()
-    return listTokens()
-  })
+  const [tokens, setTokens] = useState([])
+  const [loaded, setLoaded] = useState(false)
   const [newToken, setNewToken] = useState('')
   const [newMobile, setNewMobile] = useState('')
   const [password, setPassword] = useState('')
@@ -23,33 +16,59 @@ export default function TokenManager({ onBack }) {
   const [error, setError] = useState('')
   const [search, setSearch] = useState('')
   const [page, setPage] = useState(1)
+  const [checking, setChecking] = useState(false)
+  const requestId = useRef(0)
 
-  const refresh = () => {
-    setTokens(listTokens())
+  const lock = useCallback(() => {
+    requestId.current++
+    setUnlocked(false)
+    setTokens([])
+    setLoaded(false)
+    setError(PASSWORD_ERROR)
+  }, [])
+
+  const load = useCallback(async () => {
+    const id = ++requestId.current
+    const result = await fetchTokens(password)
+    if (id !== requestId.current) return
+    if (result.ok) {
+      setTokens(result.tokens)
+      setLoaded(true)
+      setError((prev) => (prev === LOAD_ERROR ? '' : prev))
+    } else if (result.reason === 'unauthorized') {
+      lock()
+    } else {
+      setError(LOAD_ERROR)
+    }
+  }, [password, lock])
+
+  const refresh = async () => {
     setPage(1)
+    await load()
   }
 
   useEffect(() => {
     if (!unlocked) return
-    const pull = async () => {
-      await syncTokens()
-      setTokens(listTokens())
-    }
-    pull()
-    const interval = setInterval(pull, 10000)
+    seedDefaultTokens()
+    load()
+    const interval = setInterval(load, 10000)
     return () => clearInterval(interval)
-  }, [unlocked])
+  }, [unlocked, load])
 
   const checkPassword = async (e) => {
     e.preventDefault()
-    if (password === MASTER_PASSWORD) {
+    if (checking) return
+    setChecking(true)
+    const result = await verifyAdmin(password)
+    setChecking(false)
+    if (result.ok) {
       setUnlocked(true)
       setError('')
       setPage(1)
-      await syncTokens()
-      refresh()
+    } else if (result.reason === 'unauthorized') {
+      setError(PASSWORD_ERROR)
     } else {
-      setError('كلمة المرور الرئيسية غير صحيحة.')
+      setError('تعذر الاتصال بقاعدة البيانات.')
     }
   }
 
@@ -62,12 +81,14 @@ export default function TokenManager({ onBack }) {
       setError('أدخل رقم الجوال لصاحب الرمز.')
       return
     }
-    const result = await addToken(tokenTrim, mobileTrim)
+    const result = await addToken(tokenTrim, mobileTrim, password)
     if (result.ok) {
       setNewToken('')
       setNewMobile('')
       setError('')
       refresh()
+    } else if (result.reason === 'unauthorized') {
+      lock()
     } else if (result.reason === 'exists') {
       setError('الرمز موجود مسبقاً.')
     } else if (result.reason === 'supabase') {
@@ -106,7 +127,9 @@ export default function TokenManager({ onBack }) {
   const goNext = () => setPage(Math.min(totalPages, effectivePage + 1))
 
   const handleRemove = async (token) => {
-    await removeToken(token)
+    const result = await removeToken(token, password)
+    if (result.reason === 'unauthorized') return lock()
+    setError(result.ok ? '' : 'تعذر حذف الرمز من Supabase.')
     refresh()
   }
 
@@ -123,7 +146,7 @@ export default function TokenManager({ onBack }) {
               placeholder="كلمة المرور الرئيسية"
               autoFocus
             />
-            <button type="submit">فتح</button>
+            <button type="submit" disabled={checking}>فتح</button>
             {error && <div className="auth-error">{error}</div>}
             <button type="button" className="link-btn" onClick={onBack}>
               رجوع للدخول
@@ -168,7 +191,11 @@ export default function TokenManager({ onBack }) {
             <ul className="token-list">
               {paginated.length === 0 && (
                 <li className="empty">
-                  {tokens.length === 0 ? 'لا توجد رموز' : 'لا توجد نتائج مطابقة'}
+                  {!loaded
+                    ? 'جاري التحميل...'
+                    : tokens.length === 0
+                      ? 'لا توجد رموز'
+                      : 'لا توجد نتائج مطابقة'}
                 </li>
               )}
               {paginated.map((t) => (
