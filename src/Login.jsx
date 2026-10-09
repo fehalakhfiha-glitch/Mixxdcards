@@ -14,8 +14,6 @@ export default function Login({ onLogin, onManageTokens, onTrial }) {
       const result = await login(token)
       if (result.ok) {
         onLogin()
-      } else if (result.reason === 'in-use') {
-        setError('الرمز مستخدم حالياً في جهاز أو نافذة أخرى.')
       } else if (result.reason === 'supabase') {
         setError('تعذر الاتصال بقاعدة البيانات.')
       } else {
