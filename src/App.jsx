@@ -3,9 +3,7 @@ import './App.css'
 import Login from './Login.jsx'
 import TokenManager from './TokenManager.jsx'
 import {
-  syncTokens,
   seedDefaultTokens,
-  listTokens,
   isAuthenticated,
   logout,
   getCurrentToken,
@@ -139,9 +137,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    syncTokens().finally(() => {
-      if (listTokens().length === 0) seedDefaultTokens()
-    })
+    seedDefaultTokens()
   }, [])
 
   useEffect(() => {
@@ -152,16 +148,20 @@ function App() {
 
   useEffect(() => {
     if (!isLoggedIn) return
-    const run = () => {
-      touchSession().then(() => {
-        if (!isAuthenticated()) {
-          handleLogout()
-        }
-      })
+    const check = () => {
+      if (!isAuthenticated()) handleLogout()
     }
-    run()
-    const interval = setInterval(run, 30000)
-    return () => clearInterval(interval)
+    const onActivity = () => touchSession().then(check)
+    const activityEvents = ['pointerdown', 'keydown', 'wheel', 'touchstart']
+    touchSession(true).then(check)
+    activityEvents.forEach((name) => window.addEventListener(name, onActivity, { passive: true }))
+    document.addEventListener('visibilitychange', onActivity)
+    const interval = setInterval(check, 30000)
+    return () => {
+      activityEvents.forEach((name) => window.removeEventListener(name, onActivity))
+      document.removeEventListener('visibilitychange', onActivity)
+      clearInterval(interval)
+    }
   }, [isLoggedIn, handleLogout])
 
   const playAudio = useCallback(

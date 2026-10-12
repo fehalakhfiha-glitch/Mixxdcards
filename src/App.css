@@ -671,6 +671,27 @@
   border-radius: 7px;
 }
 
+.token-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.token-actions button {
+  white-space: nowrap;
+}
+
+.token-list .token-logout-btn {
+  background-color: #F1EBDD;
+  color: #4D120B;
+  border: 1.5px solid #D2C4A7;
+}
+
+.token-list .token-logout-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 .token-search {
   width: 100%;
   margin-bottom: 12px;

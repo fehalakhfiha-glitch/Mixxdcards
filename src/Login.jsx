@@ -15,7 +15,9 @@ export default function Login({ onLogin, onManageTokens, onTrial }) {
       if (result.ok) {
         onLogin()
       } else if (result.reason === 'in-use') {
-        setError('الرمز مستخدم حالياً في جهاز أو نافذة أخرى.')
+        setError('سجل خروجك من الاجهزه الاخرى')
+      } else if (result.reason === 'cookies') {
+        setError('فعّل ملفات تعريف الارتباط (Cookies) في المتصفح ثم حاول مجدداً.')
       } else if (result.reason === 'supabase') {
         setError('تعذر الاتصال بقاعدة البيانات.')
       } else {

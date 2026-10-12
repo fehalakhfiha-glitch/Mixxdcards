@@ -1,15 +1,80 @@
 import { supabase, supabaseEnabled } from './supabaseClient.js'
 
 const TOKENS_KEY = 'mixxd_tokens'
-const SESSIONS_KEY = 'mixxd_sessions'
-const SESSION_ID_KEY = 'mixxd_session_id'
-const CURRENT_TOKEN_KEY = 'mixxd_current_token'
+const DEVICE_ID_KEY = 'mixxd_device_id'
+const SESSION_COOKIE = 'mixxd_session'
 
-const SESSION_TTL_MS = 365 * 24 * 60 * 60 * 1000
-const SESSION_ACTIVE_MS = 120 * 1000
+const SESSION_MAX_AGE_S = 24 * 60 * 60
+const SYNC_INTERVAL_MS = 60 * 1000
 
-function generateSessionId() {
-  return `${Date.now()}-${Math.random().toString(36).slice(2)}`
+const LOCAL_ADMIN_PASSWORD = supabaseEnabled ? '' : import.meta.env.VITE_LOCAL_ADMIN_PASSWORD
+
+if (supabaseEnabled) {
+  localStorage.removeItem(TOKENS_KEY)
+}
+for (const key of ['mixxd_sessions', 'mixxd_session_id', 'mixxd_current_token']) {
+  localStorage.removeItem(key)
+}
+
+let lastSession = null
+let lastSyncAt = 0
+
+function randomId() {
+  return crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`
+}
+
+function getDeviceId() {
+  let id = localStorage.getItem(DEVICE_ID_KEY)
+  if (!id) {
+    id = randomId()
+    localStorage.setItem(DEVICE_ID_KEY, id)
+  }
+  return id
+}
+
+function setSessionCookie(value, maxAge) {
+  const secure = location.protocol === 'https:' ? '; Secure' : ''
+  document.cookie = `${SESSION_COOKIE}=${value}; Max-Age=${maxAge}; Path=/; SameSite=Lax${secure}`
+}
+
+function readSession() {
+  const raw = document.cookie.split('; ').find((c) => c.startsWith(`${SESSION_COOKIE}=`))
+  if (!raw) return null
+  try {
+    const session = JSON.parse(decodeURIComponent(raw.slice(SESSION_COOKIE.length + 1)))
+    if (!session?.token || !session?.sessionId) return null
+    lastSession = session
+    return session
+  } catch {
+    return null
+  }
+}
+
+function writeSession(session) {
+  setSessionCookie(encodeURIComponent(JSON.stringify(session)), SESSION_MAX_AGE_S)
+  lastSession = session
+  lastSyncAt = Date.now()
+}
+
+async function endServerSession(session) {
+  if (!supabaseEnabled) return
+  try {
+    const { error } = await supabase.rpc('end_session', {
+      p_token: session.token,
+      p_session_id: session.sessionId,
+    })
+    if (error) throw error
+  } catch (err) {
+    console.error('Supabase end_session failed:', err)
+  }
+}
+
+export function normalizeTokenInput(value) {
+  return String(value ?? '')
+    .replace(/[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]/g, '')
+    .replace(/[\u0660-\u0669]/g, (d) => String(d.charCodeAt(0) - 0x0660))
+    .replace(/[\u06F0-\u06F9]/g, (d) => String(d.charCodeAt(0) - 0x06f0))
+    .trim()
 }
 
 function normalizeToken(t) {
@@ -33,250 +98,170 @@ function writeTokens(tokens) {
   localStorage.setItem(TOKENS_KEY, JSON.stringify(tokens))
 }
 
-function readSessions() {
+async function adminRpc(fn, args) {
   try {
-    return JSON.parse(localStorage.getItem(SESSIONS_KEY)) || {}
-  } catch {
-    return {}
-  }
-}
-
-function writeSessions(sessions) {
-  localStorage.setItem(SESSIONS_KEY, JSON.stringify(sessions))
-}
-
-function cleanupSessions() {
-  const sessions = readSessions()
-  const now = Date.now()
-  let changed = false
-  for (const [token, session] of Object.entries(sessions)) {
-    if (now - session.lastSeen > SESSION_TTL_MS) {
-      delete sessions[token]
-      changed = true
+    const { data, error } = await supabase.rpc(fn, args)
+    if (error) {
+      if (error.code === '42501') return { ok: false, reason: 'unauthorized' }
+      throw error
     }
+    return { ok: true, data }
+  } catch (err) {
+    console.error(`Supabase ${fn} failed:`, err)
+    return { ok: false, reason: 'supabase' }
   }
-  if (changed) writeSessions(sessions)
-  return sessions
 }
 
-export async function syncTokens() {
-  if (!supabaseEnabled) return
-  try {
-    const { data, error } = await supabase
-      .from('tokens')
-      .select('token, mobile')
-      .order('id', { ascending: false })
-    if (error) throw error
-    const tokens = (data || []).map(normalizeToken)
-    writeTokens(tokens)
-  } catch (err) {
-    console.error('Supabase sync failed:', err)
+export async function verifyAdmin(password) {
+  if (!supabaseEnabled) {
+    const ok = !!LOCAL_ADMIN_PASSWORD && password === LOCAL_ADMIN_PASSWORD
+    return ok ? { ok: true } : { ok: false, reason: 'unauthorized' }
   }
+  const result = await adminRpc('admin_verify', { p_password: password })
+  if (!result.ok) return result
+  return result.data === true ? { ok: true } : { ok: false, reason: 'unauthorized' }
+}
+
+export async function fetchTokens(password) {
+  if (!supabaseEnabled) return { ok: true, tokens: readTokens() }
+  const [result, sessions] = await Promise.all([
+    adminRpc('admin_list_tokens', { p_password: password }),
+    adminRpc('admin_list_sessions', { p_password: password }),
+  ])
+  if (!result.ok) return { ...result, tokens: [] }
+  const active = new Set(sessions.ok && Array.isArray(sessions.data) ? sessions.data : [])
+  const tokens = (Array.isArray(result.data) ? result.data : [])
+    .map(normalizeToken)
+    .map((t) => ({ ...t, active: active.has(t.token) }))
+  return { ok: true, tokens }
+}
+
+export async function endCustomerSession(token, password) {
+  if (!supabaseEnabled) return { ok: true }
+  const result = await adminRpc('admin_end_session', { p_password: password, p_token: token })
+  return result.ok ? { ok: true } : result
 }
 
 export function seedDefaultTokens() {
-  const tokens = readTokens()
-  if (tokens.length === 0) {
+  if (supabaseEnabled) return
+  if (readTokens().length === 0) {
     writeTokens([{ token: 'mixxd2024', mobile: '' }])
   }
 }
 
-export function listTokens() {
-  return readTokens()
-}
-
-export async function addToken(token, mobile) {
-  const tokenTrim = String(token).trim()
-  const mobileTrim = String(mobile).trim()
+export async function addToken(token, mobile, password) {
+  const tokenTrim = normalizeTokenInput(token)
+  const mobileTrim = normalizeTokenInput(mobile)
   if (!tokenTrim) return { ok: false, reason: 'empty' }
 
-  const newToken = { token: tokenTrim, mobile: mobileTrim }
-
   if (supabaseEnabled) {
-    try {
-      const { data: existing, error: checkError } = await supabase
-        .from('tokens')
-        .select('token')
-        .eq('token', tokenTrim)
-        .maybeSingle()
-      if (checkError) throw checkError
-      if (existing) return { ok: false, reason: 'exists' }
-      const { error } = await supabase.from('tokens').insert(newToken)
-      if (error) {
-        if (error.code === '23505') return { ok: false, reason: 'exists' }
-        throw error
-      }
-      await syncTokens()
-      return { ok: true }
-    } catch (err) {
-      console.error('Supabase add failed:', err)
-      return { ok: false, reason: 'supabase' }
-    }
+    const result = await adminRpc('admin_add_token', {
+      p_password: password,
+      p_token: tokenTrim,
+      p_mobile: mobileTrim,
+    })
+    if (!result.ok) return result
+    return result.data === 'ok' ? { ok: true } : { ok: false, reason: result.data || 'supabase' }
   }
 
   const tokens = readTokens()
   if (tokens.some((t) => t.token === tokenTrim)) return { ok: false, reason: 'exists' }
-  tokens.unshift(newToken)
+  tokens.unshift({ token: tokenTrim, mobile: mobileTrim })
   writeTokens(tokens)
   return { ok: true }
 }
 
-export async function removeToken(token) {
+export async function removeToken(token, password) {
   const tokenValue = typeof token === 'string' ? token : token?.token
-  const tokens = readTokens().filter((t) => t.token !== tokenValue)
-  writeTokens(tokens)
-  const sessions = readSessions()
-  if (sessions[tokenValue]) {
-    delete sessions[tokenValue]
-    writeSessions(sessions)
-  }
   if (supabaseEnabled) {
-    try {
-      await supabase.from('tokens').delete().eq('token', tokenValue)
-      await supabase.from('sessions').delete().eq('token', tokenValue)
-      await syncTokens()
-    } catch (err) {
-      console.error('Supabase remove failed:', err)
-    }
+    const result = await adminRpc('admin_remove_token', { p_password: password, p_token: tokenValue })
+    return result.ok ? { ok: true } : result
   }
+  writeTokens(readTokens().filter((t) => t.token !== tokenValue))
+  return { ok: true }
 }
 
 export async function login(token) {
-  cleanupSessions()
-  const trimmed = String(token).trim()
-  const sessionId = generateSessionId()
+  const trimmed = normalizeTokenInput(token)
+  if (!trimmed) return { ok: false, reason: 'invalid' }
 
+  let sessionId = randomId()
   if (supabaseEnabled) {
     try {
-      const { data: tokenRow, error: tokenError } = await supabase
-        .from('tokens')
-        .select('token')
-        .eq('token', trimmed)
-        .maybeSingle()
-      if (tokenError) throw tokenError
-      if (!tokenRow) return { ok: false, reason: 'invalid' }
-
-      const now = Date.now()
-      const { data, error } = await supabase
-        .from('sessions')
-        .select('session_id, last_seen')
-        .eq('token', trimmed)
-        .single()
-      if (error && error.code !== 'PGRST116') throw error
-      if (data && now - Number(data.last_seen) < SESSION_ACTIVE_MS) {
-        return { ok: false, reason: 'in-use' }
-      }
-      const { error: upsertError } = await supabase
-        .from('sessions')
-        .upsert({ token: trimmed, session_id: sessionId, last_seen: now }, { onConflict: 'token' })
-      if (upsertError) throw upsertError
-      const sessions = readSessions()
-      sessions[trimmed] = { sessionId, lastSeen: now }
-      writeSessions(sessions)
+      const { data, error } = await supabase.rpc('start_session', {
+        p_token: trimmed,
+        p_device_id: getDeviceId(),
+      })
+      if (error) throw error
+      if (data?.status === 'in-use') return { ok: false, reason: 'in-use' }
+      if (data?.status !== 'ok') return { ok: false, reason: 'invalid' }
+      sessionId = data.session_id
     } catch (err) {
       console.error('Supabase login failed:', err)
       return { ok: false, reason: 'supabase' }
     }
-  } else {
-    const tokens = readTokens()
-    if (!tokens.some((t) => t.token === trimmed)) return { ok: false, reason: 'invalid' }
-    const sessions = readSessions()
-    const existing = sessions[trimmed]
-    const currentSessionId = localStorage.getItem(SESSION_ID_KEY)
-    const now = Date.now()
-    if (existing && existing.sessionId !== currentSessionId && now - existing.lastSeen < SESSION_ACTIVE_MS) {
-      return { ok: false, reason: 'in-use' }
-    }
-    sessions[trimmed] = { sessionId, lastSeen: now }
-    writeSessions(sessions)
+  } else if (!readTokens().some((t) => t.token === trimmed)) {
+    return { ok: false, reason: 'invalid' }
   }
 
-  localStorage.setItem(SESSION_ID_KEY, sessionId)
-  localStorage.setItem(CURRENT_TOKEN_KEY, trimmed)
+  const session = { token: trimmed, sessionId }
+  writeSession(session)
+  if (readSession()?.sessionId !== sessionId) {
+    lastSession = null
+    await endServerSession(session)
+    return { ok: false, reason: 'cookies' }
+  }
   notifyAuthChange()
-
-  return { ok: true, sessionId }
+  return { ok: true }
 }
 
 export async function logout() {
-  const token = localStorage.getItem(CURRENT_TOKEN_KEY)
-  const sessionId = localStorage.getItem(SESSION_ID_KEY)
-  if (token) {
-    const sessions = readSessions()
-    if (sessions[token]?.sessionId === sessionId) {
-      delete sessions[token]
-      writeSessions(sessions)
-    }
-    if (supabaseEnabled) {
-      try {
-        await supabase.from('sessions').delete().eq('token', token)
-      } catch (err) {
-        console.error('Supabase logout failed:', err)
-      }
-    }
-  }
-  localStorage.removeItem(SESSION_ID_KEY)
-  localStorage.removeItem(CURRENT_TOKEN_KEY)
+  const session = readSession() || lastSession
+  lastSession = null
+  if (!session) return
+  setSessionCookie('', 0)
   notifyAuthChange()
+  await endServerSession(session)
 }
 
 export function getCurrentToken() {
-  return localStorage.getItem(CURRENT_TOKEN_KEY)
+  return readSession()?.token ?? ''
 }
 
 export function isAuthenticated() {
-  cleanupSessions()
-  const token = localStorage.getItem(CURRENT_TOKEN_KEY)
-  const sessionId = localStorage.getItem(SESSION_ID_KEY)
-  if (!token || !sessionId) return false
-  const sessions = readSessions()
-  return sessions[token]?.sessionId === sessionId
+  return !!readSession()
 }
 
-export async function touchSession() {
-  const token = localStorage.getItem(CURRENT_TOKEN_KEY)
-  const sessionId = localStorage.getItem(SESSION_ID_KEY)
-  if (!token || !sessionId) return
+export async function touchSession(force = false) {
+  const session = readSession()
+  if (!session || (!force && Date.now() - lastSyncAt < SYNC_INTERVAL_MS)) return
+  lastSyncAt = Date.now()
 
+  let valid
   if (supabaseEnabled) {
     try {
-      const now = Date.now()
-      const { data, error } = await supabase
-        .from('sessions')
-        .select('session_id, last_seen')
-        .eq('token', token)
-        .single()
-      if (error) {
-        if (error.code === 'PGRST116') {
-          await logout()
-          return
-        }
-        throw error
-      }
-      if (data && data.session_id === sessionId && now - Number(data.last_seen) < SESSION_TTL_MS) {
-        await supabase.from('sessions').update({ last_seen: now }).eq('token', token)
-        const sessions = readSessions()
-        sessions[token] = { sessionId, lastSeen: now }
-        writeSessions(sessions)
-      } else {
-        await logout()
-      }
+      const { data, error } = await supabase.rpc('touch_session', {
+        p_token: session.token,
+        p_session_id: session.sessionId,
+      })
+      if (error) throw error
+      valid = data === true
     } catch (err) {
       console.error('Supabase touchSession failed:', err)
+      return
     }
-    return
+  } else {
+    valid = readTokens().some((t) => t.token === session.token)
   }
 
-  const sessions = readSessions()
-  if (sessions[token]?.sessionId === sessionId) {
-    sessions[token].lastSeen = Date.now()
-    writeSessions(sessions)
-  }
+  if (readSession()?.sessionId !== session.sessionId) return
+  if (valid) writeSession(session)
+  else await logout()
 }
 
 export function subscribeToSessions(callback) {
   const handleStorage = (e) => {
-    if (e.key === SESSIONS_KEY || e.key === TOKENS_KEY) {
+    if (e.key === TOKENS_KEY || e.key === null) {
       callback()
     }
   }
