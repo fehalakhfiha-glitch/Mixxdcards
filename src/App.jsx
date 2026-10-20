@@ -3,14 +3,13 @@ import './App.css'
 import Login from './Login.jsx'
 import TokenManager from './TokenManager.jsx'
 import {
-  syncTokens,
   seedDefaultTokens,
-  listTokens,
   isAuthenticated,
   logout,
   getCurrentToken,
   touchSession,
   subscribeToSessions,
+  SESSION_HEARTBEAT_MS,
 } from './auth.js'
 
 const TOTAL_CONVERSATIONS = 100
@@ -139,9 +138,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    syncTokens().finally(() => {
-      if (listTokens().length === 0) seedDefaultTokens()
-    })
+    seedDefaultTokens()
   }, [])
 
   useEffect(() => {
@@ -152,16 +149,22 @@ function App() {
 
   useEffect(() => {
     if (!isLoggedIn) return
-    const run = () => {
-      touchSession().then(() => {
-        if (!isAuthenticated()) {
-          handleLogout()
-        }
-      })
+    const check = () => {
+      if (!isAuthenticated()) handleLogout()
     }
-    run()
-    const interval = setInterval(run, 30000)
-    return () => clearInterval(interval)
+    const heartbeat = () => {
+      if (document.visibilityState === 'visible') touchSession().then(check)
+      else check()
+    }
+    heartbeat()
+    document.addEventListener('visibilitychange', heartbeat)
+    window.addEventListener('pageshow', heartbeat)
+    const interval = setInterval(heartbeat, SESSION_HEARTBEAT_MS)
+    return () => {
+      document.removeEventListener('visibilitychange', heartbeat)
+      window.removeEventListener('pageshow', heartbeat)
+      clearInterval(interval)
+    }
   }, [isLoggedIn, handleLogout])
 
   const playAudio = useCallback(
